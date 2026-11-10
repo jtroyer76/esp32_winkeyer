@@ -16,8 +16,11 @@ else the microcontroller is doing. Small enough to live on a QRP go-box.
   fits a fixed millisecond jitter eating a larger share of each dit at
   higher speed. A fixed-speed A/B is on the todo list. CH340 has no latency
   control; FTDI (1 ms latency timer) is better but still Windows-timed.
-- RTS/CAT keying through the radio's own USB port (Xiegu X6100) did not key
-  at all.
+- RTS keying through the radio's own USB port (Xiegu X6100) did not key at
+  all under the alternative firmware that was loaded at the time. On the
+  stock Xiegu firmware it does key and RBN decodes it, with the same
+  PC-timed jitter as any DTR/RTS path: good enough to be heard, not good
+  enough to be clean.
 - The hardware answer is a WinKeyer: the PC sends characters, the keyer
   makes the dits. Options weighed:
   - K1EL WKmini / WK3-IC ($10.75 chip + FTDI TTL cable + PC817): lowest
