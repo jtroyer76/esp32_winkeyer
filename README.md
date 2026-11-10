@@ -86,14 +86,15 @@ UART1) for `tools/check_timing.py`. Type:
 ```
 :s 20            speed 20 WPM
 :e on            print every key/PTT edge as "E <micros> <K|P> <0|1>"
+:d on            hex-trace host bytes
 PARIS PARIS      send text
 :?               show parameters
 ```
 
-Full command list at the top of `src/main.cpp`. The console is useful with
-TX only (boards with no spare RX pin): it prints `# host open` / `# host
-closed`, every key/PTT edge, and a hex trace of host bytes (`< xx` in,
-`> xx` out), which is how to see what a logger actually sends.
+Full command list at the top of `src/main.cpp`. The console prints
+`# host open` / `# host closed` on its own; `:e on` logs every key/PTT edge
+and `:d on` hex-traces host bytes (`< xx` in, `> xx` out), which is how to
+see what a logger actually sends.
 
 ### Protocol check
 

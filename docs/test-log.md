@@ -42,9 +42,10 @@ Tune 1.5 s: BUSY during, idle after. PTT-enabled send at 30 WPM: echo OK.
 
 ## 2026-11-10, AtomS3 Lite, N1MM+ on Windows 11 (keyer COM14, console on COM15 via FTDI)
 
-Console is transmit-only on this board (all six base GPIOs are used), so
-the firmware now logs host open/close and edges by default and can hex-trace
-host bytes (`wk::set_trace`).
+Console RX was not wired at first (all six base GPIOs are used; RX is on
+Grove G2), so host open/close, edges and a host byte trace were logged
+unasked for this session. Afterwards edges and trace went back to opt-in
+(`:e on`, `:d on`); host open/close stays.
 
 **First attempt: runaway dah-dit.** Trace showed N1MM's message preamble is
 `0A 16 00 16 02 00 1C <wpm>` then the text. The parser took `16 02` as
