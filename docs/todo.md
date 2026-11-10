@@ -45,13 +45,14 @@
 
 ## Carrier board ("Atomic base" style)
 
-- [ ] Get header geometry from `AtomS3-Lite.stl`
-      (github.com/m5stack/M5_Hardware, Products/C124_AtomS3-Lite/Structures).
-      Board 24 × 24 mm footprint; 2×4 female header on the Atom, so the
-      carrier takes 2×4 male pins.
-- [ ] Parts: 2 × PC817, 2 × 470 Ω, 2 × 10 k, 2 × 100 nF, 3 × 3.5 mm jacks
-      (paddle TRS, key, PTT), optional piezo + 100 Ω, optional 10 k pot.
-- [ ] Decide: protoboard first, then PCB.
+Layout in `docs/hardware/carrier-board.md` (stripboard, 2026-11-10).
+
+- [ ] Build it: cuts, resistor, wires, opto, interim key lead.
+- [ ] Jacks (Adafruit 1699) on order; meter pin 2 vs 5 for tip before wiring.
+- [ ] Case: pull `AtomS3-Lite.stl` (github.com/m5stack/M5_Hardware,
+      Products/C124_AtomS3-Lite/Structures) for the opening; model a 24 mm
+      tray per the case section of the layout doc.
+- [ ] Later: second PC817 + jack for PTT, 10 k / 100 nF on the paddle lines.
 
 ## Docs
 

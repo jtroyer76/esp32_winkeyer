@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 288" width="246" height="288" font-family="Menlo,Consolas,monospace" style="background:#ffffff">
+<rect x="10" y="10" width="96" height="248" fill="#ffffff" stroke="#1d1b17" stroke-width="2" rx="6"/>
+<rect x="22.4" y="18" width="71.2" height="223.6" fill="#c98a52" opacity=".45"/>
+<rect x="10" y="10" width="96" height="96" fill="#dfe6ee" stroke="#1d1b17" stroke-width="1.5" rx="6"/>
+<text x="58" y="62" font-size="9" text-anchor="middle" fill="#1d1b17">Atom flush</text>
+<rect x="42" y="6" width="32" height="6" fill="#dfe6ee" stroke="#1d1b17"/><text x="114" y="14" font-size="9" fill="#6b665c">USB-C out the end</text>
+<rect x="37.2" y="129.76" width="56.4" height="48" fill="#dfe6ee" stroke="#1d1b17"/><text x="65.19999999999999" y="156.76" font-size="8" text-anchor="middle" fill="#1d1b17">PADDLE ▶</text>
+<rect x="22.4" y="180.56" width="56.4" height="48" fill="#e9d8c4" stroke="#1d1b17"/><text x="50.4" y="207.56" font-size="8" text-anchor="middle" fill="#1d1b17">◀ KEY</text>
+<circle cx="106" cy="153.76" r="7" fill="#ffffff" stroke="#1d1b17"/><circle cx="10" cy="204.56" r="7" fill="#ffffff" stroke="#1d1b17"/>
+<text x="58.0" y="280" font-size="10" text-anchor="middle" fill="#6b665c">24 mm</text>
+<text x="126" y="134.0" font-size="10" fill="#6b665c">≈ 62 mm long</text>
+<text x="126" y="148.0" font-size="10" fill="#6b665c">≈ 17 mm tall</text>
+</svg>

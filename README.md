@@ -49,6 +49,9 @@ Radio key input set to straight-key mode. Key and PTT are isolated from
 the computer ground by the optocouplers. Internal pull-ups are enough on
 the bench; the external 10 k / 100 nF is for RF-rich environments.
 
+A stripboard carrier for the AtomS3 Lite, Atomic-base style with two 3.5 mm
+jacks, is drawn up in [`docs/hardware/carrier-board.md`](docs/hardware/carrier-board.md).
+
 ## Status
 
 Done and measured on an AtomS3 Lite:

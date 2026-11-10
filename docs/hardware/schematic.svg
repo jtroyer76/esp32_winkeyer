@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" width="520" height="300" font-family="Menlo,Consolas,monospace" font-size="11" fill="#1d1b17" stroke="#1d1b17" stroke-width="1.5" style="background:#ffffff">
+<text x="14" y="30" stroke="none" font-weight="600">AtomS3 Lite</text>
+<rect x="14" y="40" width="70" height="150" fill="none" stroke-dasharray="4 3"/>
+<text x="22" y="70" stroke="none">G5</text><line x1="84" y1="66" x2="120" y2="66"/>
+<text x="22" y="120" stroke="none">G8</text><line x1="84" y1="116" x2="120" y2="116"/>
+<text x="22" y="145" stroke="none">G39</text><line x1="84" y1="141" x2="120" y2="141"/>
+<text x="22" y="178" stroke="none">GND</text><line x1="84" y1="174" x2="120" y2="174"/>
+<rect x="120" y="59" width="36" height="14" fill="#ffffff"/><text x="122" y="54" stroke="none" font-size="10">470 Ω</text>
+<line x1="156" y1="66" x2="200" y2="66"/>
+<rect x="200" y="46" width="90" height="80" fill="#ffffff"/>
+<text x="212" y="40" stroke="none" font-weight="600">PC817</text>
+<line x1="200" y1="66" x2="220" y2="66"/><polygon points="220,58 236,66 220,74" fill="#1d1b17"/><line x1="236" y1="58" x2="236" y2="74"/>
+<line x1="236" y1="66" x2="236" y2="106"/><line x1="236" y1="106" x2="200" y2="106"/>
+<text x="204" y="62" stroke="none" font-size="9">1</text><text x="204" y="118" stroke="none" font-size="9">2</text>
+<line x1="244" y1="74" x2="256" y2="86" stroke-width="1"/><line x1="244" y1="84" x2="256" y2="96" stroke-width="1"/>
+<line x1="262" y1="70" x2="262" y2="104"/><line x1="262" y1="78" x2="276" y2="66"/><line x1="262" y1="96" x2="276" y2="108"/>
+<line x1="276" y1="66" x2="290" y2="66"/><line x1="276" y1="108" x2="290" y2="108"/>
+<text x="280" y="62" stroke="none" font-size="9">4</text><text x="280" y="120" stroke="none" font-size="9">3</text>
+<line x1="120" y1="174" x2="180" y2="174"/><line x1="180" y1="174" x2="180" y2="106"/><line x1="180" y1="106" x2="200" y2="106"/>
+<line x1="290" y1="66" x2="380" y2="66"/><line x1="290" y1="108" x2="380" y2="108"/>
+<rect x="380" y="50" width="80" height="70" fill="none" stroke-dasharray="4 3"/>
+<text x="388" y="44" stroke="none" font-weight="600">KEY jack → radio</text>
+<text x="388" y="70" stroke="none">tip  (key)</text><text x="388" y="112" stroke="none" font-size="10">sleeve (radio GND)</text>
+<line x1="300" y1="20" x2="300" y2="290" stroke="#c3362b" stroke-dasharray="6 4" stroke-width="1"/>
+<text x="306" y="150" stroke="none" fill="#c3362b" font-size="10">no connection across this line</text>
+<rect x="120" y="200" width="150" height="80" fill="none" stroke-dasharray="4 3"/>
+<text x="126" y="194" stroke="none" font-weight="600">PADDLE jack</text>
+<line x1="120" y1="116" x2="150" y2="116"/><line x1="150" y1="116" x2="150" y2="220"/><text x="156" y="224" stroke="none">tip  = dit</text>
+<line x1="120" y1="141" x2="140" y2="141"/><line x1="140" y1="141" x2="140" y2="245"/><text x="156" y="249" stroke="none">ring = dah</text>
+<line x1="180" y1="174" x2="180" y2="270"/><line x1="180" y1="270" x2="150" y2="270"/><text x="156" y="266" stroke="none" font-size="10">sleeve = GND</text>
+<text x="14" y="292" stroke="none" font-size="10" fill="#6b665c">Optional: 10 k from G8 and G39 to 3V3, 100 nF to GND, for RF-rich sites.</text>
+</svg>
