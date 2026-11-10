@@ -61,8 +61,11 @@ AF7QD ...`, key-down lengths exactly 48 / 144 ms at 25 WPM, no break-in.
 **Esc and speed:** Esc sends `0A`; keying stopped after the character in
 progress (echo shows only "C"), status idle. Page Up ×3 sent `02 16`,
 `02 18`, `02 1A`; the next F1 keyed at 46 / 138 ms = 26 WPM exactly, 85
-elements. Note: the datasheet says Clear Buffer ends a character
-"in midstream"; this firmware finishes the character. On the todo list.
+elements. The datasheet says Clear Buffer ends a character "in midstream";
+the firmware finished the character. Changed the same day to cut the
+element in progress: five trials of `0A` fired inside a string of zeros at
+20 WPM ended the last dah at 15, 94, 154 ms (two trials landed in a gap).
+Timing regression after the change: 0.01 % at 20 WPM, 0.05 % at 35.
 
 N1MM full connect sequence as traced (for reference):
 `00 02` open, `00 17` minor rev, `0E 05` mode, `05 0A 2D FF` pot,

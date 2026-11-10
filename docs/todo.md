@@ -16,9 +16,6 @@
 
 - [x] N1MM+ WinKey: connects, F1 sends the macro with correct timing, Esc
       aborts, Page Up/Down speed follows (2026-11-10).
-- [ ] Clear Buffer (0x0A) should end the element in progress immediately
-      (datasheet p. 10); it currently finishes the character. Decide
-      whether to match the spec exactly.
 - [ ] Record the exact N1MM menu path in README once re-checked.
 - [ ] Optional WiFi/TCP log socket so the console needs no pins (off by
       default; the keyer should stay RF-quiet unless asked).

@@ -587,7 +587,11 @@ void IRAM_ATTR on_tick() {
     s.saved_wpm = 0;
     if (s.src == Source::Host) {
       s.abort_char = true;
-      if (s.state == State::KeyHold || s.state == State::Wait || s.state == State::Stall) {
+      // Datasheet p. 10: Clear Buffer "will cancel any Morse character in
+      // progress immediately ending it in midstream if necessary", so an
+      // element being keyed is cut now, not finished.
+      if (s.state == State::KeyOn || s.state == State::KeyHold ||
+          s.state == State::Wait || s.state == State::Stall) {
         set_key(false);
         wait_busy.store(false, std::memory_order_relaxed);
         enter(State::ElemGap, element_gap_us());
