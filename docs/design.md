@@ -11,8 +11,11 @@ go-boxes (Xiegu X6100 and Icom IC-7300, QRP, class 1M).
 
 - N1MM DTR/RTS keying through a CH340 USB-serial dongle produced uneven
   elements. Reverse Beacon Network skimmers decoded it but their WPM
-  estimates scattered 14-19 on a steady 15 WPM CQ, which is what timing
-  jitter looks like. CH340 has no latency control; FTDI (1 ms latency) is
+  estimates scattered 14-19. Jess was switching between 15 and 20 WPM
+  during those runs, so the scatter is only partly jitter; what is telling
+  is that 15 WPM "seemed more reliable" than 20, which fits a fixed
+  millisecond jitter eating a larger share of each dit at higher speed.
+  A proper A/B at a fixed speed is on the todo list. CH340 has no latency control; FTDI (1 ms latency) is
   better but still Windows-timed.
 - RTS/CAT keying through the X6100's own USB port did not key at all.
 - The hardware answer is a WinKeyer: the PC sends characters, the keyer

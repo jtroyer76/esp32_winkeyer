@@ -2,9 +2,12 @@
 
 ## Blocked on parts (PC817 optocouplers arrive ~2026-11-10)
 
-- [ ] Breadboard one PC817 on G5, key the X6100, listen on the IC-7300, check
-      RBN WPM estimates settle on one number (compare to the CH340 run on
-      2026-11-09 which scattered 14-19 at 15 WPM).
+- [ ] Breadboard one PC817 on G5, key the X6100, listen on the IC-7300.
+- [ ] Fair A/B on RBN: same frequency, antenna and power, fixed 20 WPM,
+      several minutes of CQs with the CH340 DTR keyer, then with the Atom.
+      Compare WPM estimates and SNR per skimmer. (The 2026-11-09 DTR run
+      scattered 14-19 WPM but speed was changed between 15 and 20 during
+      it, so that run is not a clean baseline.)
 - [ ] Second PC817 on G6 for PTT; verify PTT lead-in with the 7300.
 
 ## Hardware tests with no parts needed
