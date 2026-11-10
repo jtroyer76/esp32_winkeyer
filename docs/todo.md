@@ -2,18 +2,20 @@
 
 ## Blocked on parts (PC817 optocouplers arrive ~2026-11-10)
 
-- [ ] Breadboard one PC817 on G5, key the X6100, listen on the IC-7300.
+- [ ] Breadboard one PC817 on the key GPIO, key a radio, listen on a
+      second receiver.
 - [ ] Fair A/B on RBN: same frequency, antenna and power, fixed 20 WPM,
       several minutes of CQs with the CH340 DTR keyer, then with the Atom.
       Compare WPM estimates and SNR per skimmer. (The 2026-11-09 DTR run
       scattered 14-19 WPM but speed was changed between 15 and 20 during
       it, so that run is not a clean baseline.)
-- [ ] Second PC817 on G6 for PTT; verify PTT lead-in with the 7300.
+- [ ] Second PC817 on the PTT GPIO; verify PTT lead-in on a radio with a
+      PTT jack.
 
 ## Hardware tests with no parts needed
 
-- [ ] Plug the AtomS3 Lite into the NUC (JESS-RADIO), configure N1MM+ WinKey
-      on its COM port, confirm N1MM finds it, F1 runs a macro, ESC aborts,
+- [ ] Plug the AtomS3 Lite into the logging PC, configure N1MM+ WinKey on
+      its COM port, confirm N1MM finds it, F1 runs a macro, ESC aborts,
       speed up/down follows. Record exact N1MM menu path in README.
 - [ ] Paddle feel: iambic B default, then A, Ultimatic, bug. Note anything
       that feels wrong.
@@ -37,7 +39,9 @@
 - [ ] Ultimatic priority bits (PINCFG 7:6).
 - [ ] Status LED (XIAO) / RGB (Atom) showing host open, sending, break-in.
 - [ ] Paddle watchdog: verify the 128-element trip and recovery.
-- [ ] Consider a second key output (WinKeyer "port 2") for the second radio.
+- [ ] Consider a second key output (WinKeyer "port 2") for a second radio.
+- [ ] Add a LICENSE file before the repo goes public (note the WinKeyer
+      protocol's own CC BY-NC-SA terms in it).
 
 ## Carrier board ("Atomic base" style)
 

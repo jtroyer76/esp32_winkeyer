@@ -4,28 +4,29 @@
 
 A CW keyer that N1MM+ (and any other WinKeyer-aware logger) drives over USB,
 with Morse timing that does not depend on the PC, the USB link, or anything
-else the microcontroller is doing. Built for AF7QD's Winter Field Day 2027
-go-boxes (Xiegu X6100 and Icom IC-7300, QRP, class 1M).
+else the microcontroller is doing. Small enough to live on a QRP go-box.
 
-## Why this exists (decision record, 2026-11-09)
+## Why this exists (decision record, 2026-11)
 
 - N1MM DTR/RTS keying through a CH340 USB-serial dongle produced uneven
   elements. Reverse Beacon Network skimmers decoded it but their WPM
-  estimates scattered 14-19. Jess was switching between 15 and 20 WPM
-  during those runs, so the scatter is only partly jitter; what is telling
-  is that 15 WPM "seemed more reliable" than 20, which fits a fixed
-  millisecond jitter eating a larger share of each dit at higher speed.
-  A proper A/B at a fixed speed is on the todo list. CH340 has no latency control; FTDI (1 ms latency) is
-  better but still Windows-timed.
-- RTS/CAT keying through the X6100's own USB port did not key at all.
+  estimates scattered 14-19 across a session. The sending speed was changed
+  between 15 and 20 WPM during that session, so the scatter is only partly
+  jitter; what is telling is that 15 WPM seemed more reliable than 20, which
+  fits a fixed millisecond jitter eating a larger share of each dit at
+  higher speed. A fixed-speed A/B is on the todo list. CH340 has no latency
+  control; FTDI (1 ms latency timer) is better but still Windows-timed.
+- RTS/CAT keying through the radio's own USB port (Xiegu X6100) did not key
+  at all.
 - The hardware answer is a WinKeyer: the PC sends characters, the keyer
   makes the dits. Options weighed:
   - K1EL WKmini / WK3-IC ($10.75 chip + FTDI TTL cable + PC817): lowest
-    risk, genuine firmware. **Rejected by Jess: wanted to build the firmware.**
-  - K3NG keyer firmware on an Arduino/ESP32: mature, but its timing core is
-    being converted from blocking code to a `micros()` state machine (see
-    `reference/k3ng-nextgen-notes.md`), which still ties edge timing to how
-    fast `loop()` spins. No ESP32-S3 or nRF52 support.
+    risk, genuine firmware. Rejected for this project: the point was to
+    write the firmware.
+  - K3NG keyer firmware on an Arduino/ESP32: mature and feature-rich, but
+    its timing core is being converted from blocking code to a `micros()`
+    state machine (see `reference/k3ng-nextgen-notes.md`), which still ties
+    edge timing to how fast `loop()` spins. No ESP32-S3 or nRF52 support.
   - **Chosen:** own firmware on ESP32-S3, timing in a hardware-timer ISR.
     The WinKeyer protocol is published by K1EL under Creative Commons for
     personal, non-commercial use (datasheet p. 39).
@@ -33,7 +34,7 @@ go-boxes (Xiegu X6100 and Icom IC-7300, QRP, class 1M).
 ## Architecture
 
 ```
- USB CDC (HWCDC)         UART1 (G38 TX)
+ USB CDC (HWCDC)         UART1 (PIN_DEBUG_TX)
       |                       |
   wk_protocol  <--events--  console (debug only)
       |  enqueue()               ^
@@ -81,7 +82,7 @@ go-boxes (Xiegu X6100 and Icom IC-7300, QRP, class 1M).
 
 | Board | MCU | USB | Verdict |
 |---|---|---|---|
-| M5Stack AtomS3 Lite | ESP32-S3 | native CDC (USB-Serial-JTAG) | **primary**. Port open does not reset the chip (verified: edges logged at 27 s uptime right after the host opened the port). Has a button (G41?) and RGB LED (G35?) for standalone mode; those two GPIOs are from memory, verify on the schematic image before use. |
+| M5Stack AtomS3 Lite | ESP32-S3 | native CDC (USB-Serial-JTAG) | **primary**. Port open does not reset the chip (verified: edges logged at 27 s uptime right after the host opened the port). Has a button (G41?) and RGB LED (G35?) for standalone mode; those two GPIOs are from memory, verify on the schematic before use. |
 | Seeed XIAO ESP32-S3 | ESP32-S3 | native CDC | same class, builds, untested on hardware |
 | M5Stack Atom Lite | ESP32 (PICO-D4) | CH9102/CH552 bridge | builds, untested. The bridge resets the chip when a program opens the port; boot must be fast enough for the host's open to land. Unknown until tested. |
 | XIAO nRF52840 | nRF52 | native | not supported, not planned |
@@ -95,11 +96,11 @@ See README for the circuit. Key points:
 - PC817 optocoupler per output: GPIO → 470 Ω → LED; transistor across the
   radio's key (or PTT) jack. Isolates the radio from USB ground. 3.3 V GPIO
   through 470 Ω gives ~4.5 mA LED current; use 330 Ω if a radio's key line
-  needs more sink current (X6100/IC-7300 key lines are low-current pull-ups,
-  a couple of mA).
+  needs more sink current (X6100 / IC-7300 key lines are low-current
+  pull-ups, a couple of mA).
 - Paddle inputs: internal pull-ups work on the bench; add 10 k external
-  pull-ups and 100 nF to ground in the van (RF environment), as the WK3serial
-  guide does.
+  pull-ups and 100 nF to ground in an RF-rich environment (portable, high
+  power nearby), as the K1EL WK3serial guide does.
 - Radio set to straight-key mode on its KEY jack.
 
 ## Testing
@@ -109,8 +110,8 @@ See README for the circuit. Key points:
   engine change. Baseline logs in `docs/reference/`.
 - `tools/wk_test.py`: a host simulator (N1MM-style connect sequence, echo,
   status, tune, PTT). Run after any protocol change.
-- The ISR timestamps measure the firmware's own view; a scope on G5 would
-  add the GPIO path, which is sub-µs.
+- The ISR timestamps measure the firmware's own view; a scope on the key
+  pin would add the GPIO path, which is sub-µs.
 
 ## Open items
 

@@ -34,7 +34,7 @@ yet tested with a real paddle.
 Host Open -> revision 31
 Echo test -> OK
 STATUS 0xc0 [idle], POT 20
-Sending 'CQ WFD DE AF7QD K' at 25 WPM
+Sending 'CQ TEST DE N0CALL K' at 25 WPM
 STATUS 0xc4 [BUSY] ... echo of each character ... STATUS 0xc0 [idle]
 Echo matches text: yes
 ```

@@ -2,7 +2,7 @@
 """Exercise the WinKeyer protocol the way a logger does.
 
   python tools/wk_test.py COM14                 # open, probe, send a test message
-  python tools/wk_test.py COM14 --text "CQ TEST DE AF7QD" --wpm 25
+  python tools/wk_test.py COM14 --text "CQ TEST DE N0CALL" --wpm 25
   python tools/wk_test.py COM14 --tune 2        # key down for 2 s
 
 Sequence (mirrors what N1MM+ does on connect):
@@ -56,7 +56,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("port")
     ap.add_argument("--wpm", type=int, default=20)
-    ap.add_argument("--text", default="VVV DE AF7QD K")
+    ap.add_argument("--text", default="VVV DE N0CALL K")
     ap.add_argument("--tune", type=float, default=0, help="key down for N seconds instead of sending text")
     ap.add_argument("--ptt", action="store_true", help="enable PTT with 20 ms lead-in")
     a = ap.parse_args()

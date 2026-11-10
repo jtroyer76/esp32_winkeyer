@@ -1,8 +1,8 @@
 # esp32_winkeyer — notes for AI-assisted sessions
 
 Read `README.md`, then `docs/design.md`, `docs/todo.md`, `docs/test-log.md`
-before changing anything. The owner is Jess, AF7QD; this keyer is for
-Winter Field Day 2027 (Jan 23-24), solo QRP from a van.
+before changing anything. The project's one non-negotiable is that Morse
+timing never depends on code running in `loop()`.
 
 ## Ground rules
 
@@ -23,23 +23,21 @@ Winter Field Day 2027 (Jan 23-24), solo QRP from a van.
 - After any engine change run `tools/check_timing.py` (console build);
   after any protocol change run `tools/wk_test.py`. Record results in
   `docs/test-log.md` with the date and board.
-- Prefer short, direct instructions when guiding Jess at the bench; they
-  want to be told what to do, not watch it be done, when hardware is
-  involved. Verify facts before claiming them; flag guesses.
+- When hardware is involved, give the person at the bench short, direct
+  steps rather than doing it for them. Verify facts before claiming them;
+  flag guesses.
 
 ## Build / flash
 
 ```
 pio run -e atoms3_lite -t upload              # WinKeyer on USB (normal)
 pio run -e atoms3_lite_console -t upload      # console on USB (timing tests)
-pio device list                               # Atom = VID 303A:0009
+pio device list                               # AtomS3 = VID 303A:0009
 python tools/check_timing.py COMx --wpm 20
 python tools/wk_test.py COMx --wpm 25 --text "CQ TEST"
 ```
 
-`pio` lives at `C:\Users\Jess\.platformio\penv\Scripts\pio.exe` on Jess's
-PC. After flashing an S3 over native USB, re-plug if the port refuses to
-open.
+After flashing an S3 over native USB, re-plug if the port refuses to open.
 
 ## Layout
 

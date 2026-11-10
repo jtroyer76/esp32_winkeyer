@@ -1,28 +1,37 @@
 # esp32_winkeyer
 
-WinKeyer-compatible CW keyer firmware for ESP32, built for AF7QD's Winter
-Field Day go-boxes. Loggers (N1MM+, Not1MM, fldigi, ...) talk to it as a
-K1EL WinKeyer over USB serial; it keys the radio through an optocoupler.
+WinKeyer-compatible CW keyer firmware for ESP32, with every element edge
+timed by a hardware-timer interrupt rather than by code running in `loop()`.
+Loggers (N1MM+, Not1MM, fldigi, ...) talk to it as a K1EL WinKeyer over USB
+serial; it keys the radio through an optocoupler.
 
 ## Why another keyer
 
 Keying a radio from a PC serial line (DTR/RTS) puts Morse timing at the
 mercy of the OS and the USB-serial chip. A WinKeyer moves timing into
-hardware: the PC sends characters, the keyer makes the dits. This project
-does that on an ESP32 with the timing engine in a hardware-timer ISR, so
-element edges do not depend on `loop()`, USB traffic, or anything else the
-chip is doing. No `delay()` anywhere, by rule.
+hardware: the PC sends characters, the keyer makes the dits.
+
+Most open keyer firmware (the K3NG keyer being the best known) grew up on
+8-bit AVRs and times elements with `delay()` or with `millis()` checks in
+the main loop, so an edge can land late by however long the rest of the
+loop took: serial parsing, display updates, debouncing. The K3NG NextGen
+effort is converting that code to a non-blocking state machine after the
+fact. This project starts from the other end: a 50 µs timer ISR owns the
+key and PTT pins and every countdown; everything else (USB, protocol,
+console, sidetone) runs outside it and only exchanges data through
+lock-free rings. There is no `delay()` anywhere, by rule.
 
 ## Targets
 
 | env           | board                | notes                                                   |
 |---------------|----------------------|---------------------------------------------------------|
 | `atoms3_lite` | M5Stack AtomS3 Lite  | primary. ESP32-S3, native USB CDC, no reset on port open |
-| `xiao_s3`     | Seeed XIAO ESP32-S3  | same chip class, same behaviour                         |
-| `atom_lite`   | M5Stack Atom Lite    | classic ESP32; USB-UART bridge resets the chip when the port opens |
+| `xiao_s3`     | Seeed XIAO ESP32-S3  | same chip class; builds, not yet tested on hardware     |
+| `atom_lite`   | M5Stack Atom Lite    | classic ESP32; USB-UART bridge resets the chip when the port opens; builds, not yet tested |
 
 Pin maps are in `include/pins.h`, verified against the arduino-esp32
-variant headers and M5's documentation.
+variant headers and M5's documentation. Any other ESP32-S3 or ESP32 board
+needs only a pin block there and an env in `platformio.ini`.
 
 ## Hardware (per radio)
 
@@ -37,25 +46,29 @@ piezo ──[100Ω]── SIDETONE GPIO (optional)
 ```
 
 Radio key input set to straight-key mode. Key and PTT are isolated from
-the computer ground by the optocouplers.
+the computer ground by the optocouplers. Internal pull-ups are enough on
+the bench; the external 10 k / 100 nF is for RF-rich environments.
 
 ## Status
 
-Milestone 1 (this build): timing engine and a test console. No WinKeyer
-protocol yet.
+Done and measured on an AtomS3 Lite:
 
-Planned:
+1. **Engine**: ISR state machine, 50 µs tick, weighting, dit/dah ratio,
+   keying compensation, first extension, Farnsworth, contest spacing, PTT
+   lead/tail/hang, sidetone, edge log for timing verification.
+2. **Paddle**: sampled every tick, 1 ms debounce, iambic A/B, Ultimatic,
+   bug, dit/dah memory with switchpoint, break-in with FIFO flush (paddle
+   has priority, per the spec), paddle echo, software paddle, watchdog.
+3. **WinKeyer protocol**: Admin open/close/echo and WK1/2/3 mode select,
+   all immediate commands (speed, weight, PTT timing, pot range, pause,
+   clear, key immediate, PINCFG, mode register, load defaults, extensions,
+   compensation, switchpoint, status, ratio), buffered commands (PTT,
+   timed key, wait, merge, speed change, HSCW, cancel), status and pot
+   bytes, echo-back, X2MODE, sidetone frequency, Vcc readback.
 
-1. **Engine** (done): ISR state machine, 50 µs tick, weighting, dit/dah ratio,
-   keying compensation, first extension, PTT lead/tail, sidetone, edge log.
-2. **Paddle**: 1 kHz sampling, debounce, iambic A/B, Ultimatic, dit/dah
-   memory, break-in with FIFO flush (paddle has priority, per the spec).
-3. **WinKeyer 2 protocol**: Admin open/close/echo, speed, weight, PTT,
-   pause, clear, key immediate, mode register, load defaults, status and
-   speed-pot bytes, echo-back, pointer and buffered commands.
-4. **WinKeyer 3 extensions**: X1/X2 mode registers, continuous sidetone
-   frequency, Vcc readback, firmware revision.
-5. **Standalone**: command button, stored messages, settings in NVS.
+Not yet: standalone mode (button, stored messages, NVS settings), pointer
+commands (0x16), X1MODE, EEPROM dump/load with real contents. See
+`docs/todo.md`.
 
 ## Using it with a logger
 
@@ -81,21 +94,28 @@ Full command list at the top of `src/main.cpp`.
 ### Protocol check
 
 ```
-python tools/wk_test.py COM14 --wpm 25 --text "CQ WFD DE AF7QD K"
+pip install pyserial
+python tools/wk_test.py COM14 --wpm 25 --text "CQ TEST DE N0CALL K"
 python tools/wk_test.py COM14 --tune 2
-python tools/wk_test.py COM14 --ptt --text "TU 1M WWA"
+python tools/wk_test.py COM14 --ptt --text "TU 599"
 ```
+
+Runs the connect sequence a logger uses (Host Open, echo test, mode, speed,
+status, pot), sends text, and checks that the echoed characters match.
 
 ### Timing check
 
 ```
-pip install pyserial
 python tools/check_timing.py COM7 --wpm 20 --text "PARIS PARIS PARIS PARIS PARIS"
 ```
 
 Captures the edge log and reports measured dit, dah, and gap lengths
 against nominal, with worst-case error. The engine's design bound is one
 tick (50 µs); anything above 1 % is a bug.
+
+Measured: worst element error 0.01 % at 12, 20 and 25 WPM; 0.10 % at
+35 WPM with weighting and compensation (one tick of rounding on a 22 ms
+gap). Details in `docs/test-log.md`.
 
 ## Build
 
@@ -105,13 +125,11 @@ After flashing an S3 board over its native USB, Windows sometimes refuses to
 open the port ("device not functioning") until the board is unplugged and
 plugged back in; it may come back under a new COM number.
 
-Measured on an AtomS3 Lite, 2026-11-09 (milestone 1): worst element error
-0.01 % at 12 and 20 WPM, 0.10 % at 35 WPM with weighting and compensation
-(one tick of rounding). Opening the USB port does not reset the board.
-
 ## References
 
-- K1EL WinKeyer3 IC datasheet v1.3 (protocol spec). K1EL publishes the
-  protocol under Creative Commons for personal, non-commercial use.
-- K3NG CW keyer, NextGen development notes (the blocking-to-non-blocking
-  refactor this design skips by starting non-blocking).
+- K1EL WinKeyer3 IC datasheet v1.3 (`docs/reference/`). K1EL publishes the
+  protocol under Creative Commons BY-NC-SA for personal, non-commercial
+  use; this project follows those terms.
+- K3NG CW keyer, NextGen development notes
+  (`docs/reference/k3ng-nextgen-notes.md`): the blocking-to-non-blocking
+  refactor this design avoids by starting non-blocking.
