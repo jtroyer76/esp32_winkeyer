@@ -125,6 +125,12 @@ After flashing an S3 board over its native USB, Windows sometimes refuses to
 open the port ("device not functioning") until the board is unplugged and
 plugged back in; it may come back under a new COM number.
 
+## License
+
+MIT (see `LICENSE`). The K1EL datasheet in `docs/reference/` and the
+WinKeyer protocol itself are K1EL's, under CC BY-NC-SA for personal,
+non-commercial use.
+
 ## References
 
 - K1EL WinKeyer3 IC datasheet v1.3 (`docs/reference/`). K1EL publishes the

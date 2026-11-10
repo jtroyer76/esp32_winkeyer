@@ -40,8 +40,6 @@
 - [ ] Status LED (XIAO) / RGB (Atom) showing host open, sending, break-in.
 - [ ] Paddle watchdog: verify the 128-element trip and recovery.
 - [ ] Consider a second key output (WinKeyer "port 2") for a second radio.
-- [ ] Add a LICENSE file before the repo goes public (note the WinKeyer
-      protocol's own CC BY-NC-SA terms in it).
 
 ## Carrier board ("Atomic base" style)
 
