@@ -21,5 +21,7 @@ void begin(Stream& host);
 void poll();
 
 bool host_open();
+// Hex-trace every host byte ("< xx" received, "> xx" sent) to a Print; nullptr off.
+void set_trace(Print* p);
 
 }  // namespace wk

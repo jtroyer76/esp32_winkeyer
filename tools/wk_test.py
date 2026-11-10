@@ -100,6 +100,9 @@ def main():
             ser.write(bytes([0x0B, 0x00]))
         else:
             print(f"Sending {a.text!r} at {a.wpm} WPM")
+            # Exactly what N1MM+ sends before every message (traced 2026-11-10):
+            # clear, pointer reset, pointer append at 0, buffered speed.
+            ser.write(bytes([0x0A, 0x16, 0x00, 0x16, 0x02, 0x00, 0x1C, a.wpm]))
             ser.write(a.text.encode("ascii"))
             t0 = time.time()
             echoed = ""

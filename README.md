@@ -75,6 +75,7 @@ commands (0x16), X1MODE, EEPROM dump/load with real contents. See
 Plug in, select the COM port, choose "WinKey" (N1MM+: Configure Ports ->
 the port -> CW/Other -> Set -> WinKey). The keyer answers Host Open with
 revision 31. Speed, PTT timing, mode and echo all come from the logger.
+Verified with N1MM+ 2026-11-10: F1 macros key with exact element timing.
 
 ## Test console
 
@@ -89,7 +90,10 @@ PARIS PARIS      send text
 :?               show parameters
 ```
 
-Full command list at the top of `src/main.cpp`.
+Full command list at the top of `src/main.cpp`. The console is useful with
+TX only (boards with no spare RX pin): it prints `# host open` / `# host
+closed`, every key/PTT edge, and a hex trace of host bytes (`< xx` in,
+`> xx` out), which is how to see what a logger actually sends.
 
 ### Protocol check
 

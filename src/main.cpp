@@ -5,6 +5,10 @@
 // Build with -DUSB_CONSOLE to swap them (console on USB, WinKeyer on UART1),
 // which is what tools/check_timing.py needs.
 //
+// The console is useful transmit-only (boards with no spare pin for RX, e.g.
+// AtomS3 Lite where all six base GPIOs are taken): it reports host
+// open/close and, by default, every key/PTT edge without being asked.
+//
 // Console commands (line based):
 //   text          queue text to send
 //   :s NN         speed, WPM
@@ -14,7 +18,7 @@
 //   :x NN         first extension, ms
 //   :p L T        PTT lead / tail (x10 ms); ':p off' disables PTT
 //   :f NNN        sidetone Hz (0 = off)
-//   :e on|off     edge log on the console ("E <micros> <K|P> <0|1>")
+//   :e on|off     edge log on the console ("E <micros> <K|P> <0|1>"), default on
 //   :t on|off     tune (key down)
 //   :k            clear buffer
 //   :m a|b|u|g    paddle mode: iambic A, iambic B, Ultimatic, buG/straight
@@ -127,7 +131,11 @@ void setup() {
   CONSOLE.begin(115200, SERIAL_8N1, PIN_DEBUG_RX, PIN_DEBUG_TX);
 #endif
   keyer::begin();
+  keyer::set_edge_log(true);
   wk::begin(HOST);
+#if !defined(USB_CONSOLE)
+  wk::set_trace(&CONSOLE);
+#endif
   if (PIN_STATUS_LED >= 0) pinMode(PIN_STATUS_LED, OUTPUT);
   // Do not wait for a host: the keyer must be ready the instant it boots.
   CONSOLE.println("# esp32_winkeyer console. ':?' for parameters.");
@@ -135,6 +143,13 @@ void setup() {
 
 void loop() {
   wk::poll();
+
+  static bool was_open = false;
+  bool open = wk::host_open();
+  if (open != was_open) {
+    was_open = open;
+    CONSOLE.println(open ? "# host open" : "# host closed");
+  }
 
   while (CONSOLE.available()) {
     char c = static_cast<char>(CONSOLE.read());

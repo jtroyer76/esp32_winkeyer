@@ -28,7 +28,12 @@ uint16_t sink = 0;              // bytes to discard (Admin:LoadEEPROM)
 
 constexpr uint8_t NO_CMD = 0xFF;
 
-inline void send(uint8_t b) { io->write(b); }
+Print* trace = nullptr;         // optional hex trace of host traffic
+
+inline void send(uint8_t b) {
+  io->write(b);
+  if (trace) trace->printf("> %02X\n", b);
+}
 
 // Parameter byte counts for immediate commands (index = command byte).
 // Admin (0x00) takes the admin code first; extra parameters depend on it.
@@ -230,14 +235,18 @@ void exec(uint8_t c, const uint8_t* a) {
 }
 
 void on_byte(uint8_t b) {
+  if (trace) trace->printf("< %02X\n", b);
   if (sink) { --sink; return; }
 
   if (cmd != NO_CMD) {
     buf[got++] = b;
     // Admin: the first parameter is the admin code, which may need more.
     if (cmd == 0x00 && got == 1) needed = static_cast<uint8_t>(1 + admin_extra_params(b));
-    // Pointer command 03 carries one extra parameter.
-    if (cmd == 0x16 && got == 1 && b == 3) needed = 2;
+    // Pointer command (datasheet p. 14): 00 is bare; 01/02 carry a buffer
+    // position and 03 a null count. N1MM sends <16><02><00> on every
+    // message; parsing it as two bytes let the trailing 00 start a bogus
+    // Admin command and the "C" of "CQ" land in Software Paddle (0x14).
+    if (cmd == 0x16 && got == 1 && b >= 1 && b <= 3) needed = 2;
     if (got >= needed) {
       uint8_t c = cmd;
       cmd = NO_CMD;
@@ -268,6 +277,8 @@ void begin(Stream& host) {
 }
 
 bool host_open() { return opened; }
+
+void set_trace(Print* p) { trace = p; }
 
 void poll() {
   while (io->available() > 0) on_byte(static_cast<uint8_t>(io->read()));

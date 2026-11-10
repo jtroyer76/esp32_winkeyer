@@ -14,9 +14,11 @@
 
 ## Hardware tests with no parts needed
 
-- [ ] Plug the AtomS3 Lite into the logging PC, configure N1MM+ WinKey on
-      its COM port, confirm N1MM finds it, F1 runs a macro, ESC aborts,
-      speed up/down follows. Record exact N1MM menu path in README.
+- [x] N1MM+ WinKey: connects, F1 sends the macro with correct timing
+      (2026-11-10). Still to check: ESC aborts, speed up/down follows,
+      exact menu path recorded in README.
+- [ ] Optional WiFi/TCP log socket so the console needs no pins (off by
+      default; the keyer should stay RF-quiet unless asked).
 - [ ] Paddle feel: iambic B default, then A, Ultimatic, bug. Note anything
       that feels wrong.
 - [ ] Edge-log test of squeeze behaviour (needs a two-button jig or a
