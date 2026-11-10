@@ -82,7 +82,7 @@ else the microcontroller is doing. Small enough to live on a QRP go-box.
 
 | Board | MCU | USB | Verdict |
 |---|---|---|---|
-| M5Stack AtomS3 Lite | ESP32-S3 | native CDC (USB-Serial-JTAG) | **primary**. Port open does not reset the chip (verified: edges logged at 27 s uptime right after the host opened the port). Has a button (G41?) and RGB LED (G35?) for standalone mode; those two GPIOs are from memory, verify on the schematic before use. |
+| M5Stack AtomS3 Lite | ESP32-S3 | native CDC (USB-Serial-JTAG) | **primary**. Port open does not reset the chip (verified: edges logged at 27 s uptime right after the host opened the port). Button G41, RGB LED G35 (from the label on the case bottom) for standalone mode. |
 | Seeed XIAO ESP32-S3 | ESP32-S3 | native CDC | same class, builds, untested on hardware |
 | M5Stack Atom Lite | ESP32 (PICO-D4) | CH9102/CH552 bridge | builds, untested. The bridge resets the chip when a program opens the port; boot must be fast enough for the host's open to land. Unknown until tested. |
 | XIAO nRF52840 | nRF52 | native | not supported, not planned |

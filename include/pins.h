@@ -13,7 +13,7 @@ constexpr uint8_t PIN_PADDLE_DIT = 8;   // 10k pull-up to 3V3, 100nF to GND, clo
 constexpr uint8_t PIN_PADDLE_DAH = 39;  // same (G39 is easier to read on the silkscreen than G38)
 constexpr uint8_t PIN_DEBUG_TX   = 38;  // UART1 TX for the timing harness
 constexpr uint8_t PIN_DEBUG_RX   = 2;   // Grove, unused
-constexpr int8_t  PIN_STATUS_LED = -1;  // RGB WS2812 (G35) and button (G41): from memory, verify before use
+constexpr int8_t  PIN_STATUS_LED = -1;  // RGB WS2812 on G35, button on G41 (bottom label sticker, 2026-11-10); LED not driven yet
 #elif defined(BOARD_XIAO_S3)
 // Seeed XIAO ESP32-S3. Dn labels are the silkscreen names.
 constexpr uint8_t PIN_KEY        = 2;   // D1 -> 470R -> PC817 LED (key out, high = key down)

@@ -30,7 +30,7 @@
 
 ## Firmware
 
-- [ ] Standalone mode: command button (G41? verify), stored messages in NVS,
+- [ ] Standalone mode: command button (G41), stored messages in NVS,
       settings persistence, speed pot option. Datasheet pp. 36-38 for the
       standalone command set if we want paddle-command compatibility.
 - [ ] Pointer commands (0x16): implement overwrite/append semantics (needs
