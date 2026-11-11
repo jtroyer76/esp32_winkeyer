@@ -86,7 +86,23 @@ mcHF in CW, straight-key mode. N1MM+ F1 macro keyed the radio; by ear the
 sending was clean. No instrument measurement yet; the RBN A/B in
 `docs/todo.md` is the next step.
 
+## 2026-11-11: first RBN spots through the keyer
+
+mcHF on a van-mounted 20 m Hustler, N1MM+ CQ at 20 WPM through the Atom and
+PC817, 14070 kHz. Four skimmers in five minutes:
+
+| Skimmer | Distance | SNR | WPM reported |
+|---|---|---|---|
+| W6YX | 792 mi | 25 dB | 18 |
+| KD7EFG | 709 mi | 16 dB | 20 |
+| KW7MM | 1280 mi | 11 dB | 20 |
+| K3LR | 2097 mi | 9 dB | 20 |
+
+The 2026-11-09 DTR/CH340 session had skimmers reporting 14-19 WPM. Not a
+matched A/B (different day and antenna), but the speed estimates now sit on
+the nominal value.
+
 ### Not yet tested
 
-RBN A/B against DTR keying, iambic feel, Atom Lite,
+Matched RBN A/B against DTR keying (same day, antenna, fixed 20 WPM), iambic feel, Atom Lite,
 XIAO S3, paddle watchdog, buffered wait / timed key / merge over the wire.
