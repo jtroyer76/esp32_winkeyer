@@ -2,8 +2,8 @@
 
 ## Blocked on parts (PC817 optocouplers arrive ~2026-11-10)
 
-- [ ] Breadboard one PC817 on the key GPIO, key a radio, listen on a
-      second receiver.
+- [x] One PC817 on the key GPIO keyed an mcHF from N1MM, clean by ear
+      (2026-11-10, on the carrier board).
 - [ ] Fair A/B on RBN: same frequency, antenna and power, fixed 20 WPM,
       several minutes of CQs with the CH340 DTR keyer, then with the Atom.
       Compare WPM estimates and SNR per skimmer. (The 2026-11-09 DTR run
@@ -47,7 +47,8 @@
 
 Layout in `docs/hardware/carrier-board.md` (stripboard, 2026-11-10).
 
-- [ ] Build it: cuts, resistor, wires, opto, interim key lead.
+- [x] Built, key side (2026-11-10): cuts, 1206, wires, opto, interim key
+      lead. Paddle wires and jacks still to do.
 - [ ] Jacks (Adafruit 1699) on order; meter pin 2 vs 5 for tip before wiring.
 - [ ] Case: pull `AtomS3-Lite.stl` (github.com/m5stack/M5_Hardware,
       Products/C124_AtomS3-Lite/Structures) for the opening; model a 24 mm

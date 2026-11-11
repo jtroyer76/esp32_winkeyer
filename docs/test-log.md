@@ -77,7 +77,16 @@ Also observed: closing the USB port with pyserial reboots the S3 (boot
 banner after Host Close). Opening does not. N1MM holds the port open all
 session, so this does not affect it.
 
+## 2026-11-10: first radio keyed (AtomS3 Lite, PC817, mcHF)
+
+Carrier board wired per `docs/hardware/carrier-board.md` as far as the key
+side: 1206 470 Ω straddling strips I/J, PC817 at J/K, magnet wire on the
+copper side, interim key lead from J1/K1 to the radio's KEY jack. Radio:
+mcHF in CW, straight-key mode. N1MM+ F1 macro keyed the radio; by ear the
+sending was clean. No instrument measurement yet; the RBN A/B in
+`docs/todo.md` is the next step.
+
 ### Not yet tested
 
-Real radio keying (no optocoupler on hand), iambic feel, Atom Lite,
+RBN A/B against DTR keying, iambic feel, Atom Lite,
 XIAO S3, paddle watchdog, buffered wait / timed key / merge over the wire.
