@@ -89,7 +89,7 @@
 <circle cx="116" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="142" cy="268" r="7" fill="#ffffff" stroke="#c3362b" stroke-width="2"/><path d="M138 264L146 272M146 264L138 272" stroke="#c3362b" stroke-width="2"/>
 <circle cx="168" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<circle cx="194" cy="268" r="7" fill="#ffffff" stroke="#c3362b" stroke-width="2"/><path d="M190 264L198 272M198 264L190 272" stroke="#c3362b" stroke-width="2"/>
+<circle cx="194" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="220" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <rect x="55" y="287" width="174" height="14" rx="7" fill="#c98a52"/>
 <rect x="53" y="283" width="74" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
@@ -240,9 +240,9 @@
 <circle cx="142" cy="528" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="531.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">4</text>
 <circle cx="142" cy="554" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="557.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">5</text>
 <circle cx="168" cy="502" r="5" fill="#1d1b17" stroke="#1d1b17" stroke-width="1.2"/><text x="168" y="505.5" font-size="8" text-anchor="middle" fill="#ffffff" font-weight="600">1</text>
-<path d="M194 112L207.0 112L207.0 268L220 268" stroke="#1f5fa8" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
-<circle cx="194" cy="112" r="3.5" fill="#1f5fa8"/><circle cx="220" cy="268" r="3.5" fill="#1f5fa8"/>
-<text x="211.0" y="186.0" font-size="9" fill="#1f5fa8" font-weight="600">G5</text>
+<path d="M194 112L207.0 112L207.0 242L220 242" stroke="#1f5fa8" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
+<circle cx="194" cy="112" r="3.5" fill="#1f5fa8"/><circle cx="220" cy="242" r="3.5" fill="#1f5fa8"/>
+<text x="211.0" y="173.0" font-size="9" fill="#1f5fa8" font-weight="600">G5</text>
 <path d="M194 294L155.0 294L155.0 34L116 34" stroke="#2a9d8f" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
 <circle cx="194" cy="294" r="3.5" fill="#2a9d8f"/><circle cx="116" cy="34" r="3.5" fill="#2a9d8f"/>
 <text x="159.0" y="160.0" font-size="9" fill="#2a9d8f" font-weight="600">GND</text>
@@ -261,5 +261,7 @@
 <path d="M64 372L77.0 372L77.0 34L90 34" stroke="#1f5fa8" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
 <circle cx="64" cy="372" r="3.5" fill="#1f5fa8"/><circle cx="90" cy="34" r="3.5" fill="#1f5fa8"/>
 <text x="81.0" y="199.0" font-size="9" fill="#1f5fa8" font-weight="600">pad GND</text>
-<rect x="177.6220472440945" y="260" width="32.75590551181102" height="16" fill="#2b2b2b" stroke="#1d1b17" stroke-width="1" rx="1"/><rect x="177.6220472440945" y="260" width="7" height="16" fill="#c8c8c8"/><rect x="203.3779527559055" y="260" width="7" height="16" fill="#c8c8c8"/><text x="194.0" y="288" font-size="9" text-anchor="middle" fill="#1d1b17" font-weight="600">470 Ω 1206</text>
+<rect x="185.81102362204723" y="238.6220472440945" width="16.37795275590551" height="32.75590551181102" fill="#2b2b2b" stroke="#1d1b17" stroke-width="1" rx="1"/>
+<rect x="185.81102362204723" y="238.6220472440945" width="16.37795275590551" height="7" fill="#c8c8c8"/><rect x="185.81102362204723" y="264.37795275590554" width="16.37795275590551" height="7" fill="#c8c8c8"/>
+<text x="206.18897637795277" y="258.0" font-size="9" fill="#1d1b17" font-weight="600">470 Ω 1206</text>
 </svg>

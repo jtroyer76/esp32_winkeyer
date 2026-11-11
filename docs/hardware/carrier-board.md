@@ -38,7 +38,6 @@ not key, pins 3 and 4 are swapped.
 |---|---|
 | A4 B4 C4 D4 | separates each Atom row into its left pin and its right pin |
 | J4 K4 | opto: Atom side (cols 5–7) from radio side (cols 1–3) |
-| J6 | knife cut, 1 mm gap: the 1206 resistor bridges it, J7 (wire from G5) to J5 (opto pin 1) |
 
 Jack rows L–P and Q–U need no cuts: each jack owns its rows. Shaded rows
 are the radio side; nothing on them may touch an Atom net. Meter every cut
@@ -46,8 +45,8 @@ afterwards: the two halves must read open.
 
 | Wire | From | To | Net |
 |---|---|---|---|
-| wire | D6 | J7 | G5 → resistor |
-| 470 Ω 1206 | J7 | J5 | across the J6 cut, copper side → opto pin 1 |
+| wire | D6 | I7 | G5 → row I |
+| 470 Ω 1206 | I6 | J6 | straddles the gap between strips I and J, copper side → opto pin 1 |
 | wire | K6 | A3 | opto pin 2 → GND |
 | wire | Q1 *or* U1 | J1 | key tip → opto pin 4 (collector) |
 | wire | S1 | K1 | key sleeve → opto pin 3 (emitter) |
@@ -59,12 +58,11 @@ Everything added goes on the **copper side**, so nothing has to fit under
 the Atom. Wires are enamelled magnet wire soldered straight onto the strip
 at the named hole (tin the pad, hold the wire end in the blob for a second
 so the enamel burns off, as in Tom Verbeure's magnet-wire note); the hole
-names are where the joints go, not holes to thread. The 1206 resistor sits
-flat across the J6 cut, one end toward J7 and the other toward J5. Make
-that cut with a knife, a 1 mm gap across the strip, not a spot-face
-scrape: the part is only 3.2 mm long with 0.5 mm end caps, and a 3.5 mm
-scraped ring would leave the caps over bare board. Tin one side, slide the
-part in, then do the other end. Rows M, O, R, T carry the jacks' normally-closed switch contacts and
+names are where the joints go, not holes to thread. The 1206 resistor lies
+across the gap between strips I and J at column 6: adjacent strips are
+2.54 mm apart with about a 1 mm gap, and a 3.2 mm part with 0.5 mm end
+caps lands on both. Row I has nothing else on it and becomes part of the
+G5 net. Tin strip I at col 6, slide the part in, then solder the J end. Rows M, O, R, T carry the jacks' normally-closed switch contacts and
 get nothing.
 
 Until the jacks arrive, the interim key lead goes tip into **J1**, sleeve
@@ -120,8 +118,9 @@ Same form as M5's Atomic bases (ATOM PWM base: 24 × 48 × 17.5 mm, drawing in
 
 ## Build order
 
-1. Cuts: A4 B4 C4 D4 J4 K4 J6. Meter each.
-2. 1206 resistor across J6 (J7 to J5). Magnet wires D6→J7 and K6→A3.
+1. Cuts: A4 B4 C4 D4 J4 K4. Meter each.
+2. 1206 resistor across strips I and J at col 6. Magnet wires D6→I7 and
+   K6→A3.
 3. Paddle wires to A5, D2, A2 and key wires to J1, K1; leave the jack ends
    long until the jacks are in.
 4. PC817, dot at J5.

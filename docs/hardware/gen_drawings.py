@@ -14,7 +14,7 @@ COLS, ROWS = 7, 22                      # board: 7 x 22 holes (A..V)
 ATOM_L = {"A": "GND", "B": "5V", "C": "G38", "D": "G39"}        # col 1
 ATOM_R = {"A": "G8", "B": "G7", "C": "G6", "D": "G5", "E": "3V3"}  # col 7
 ATOM_BODY_ROWS = "ABCDEFGHI"            # Atom case covers these rows
-CUTS = ["A4", "B4", "C4", "D4", "J4", "K4", "J6"]
+CUTS = ["A4", "B4", "C4", "D4", "J4", "K4"]
 OPTO = [("J5", "1"), ("K5", "2"), ("K2", "3"), ("J2", "4")]      # PC817, dot = pin 1
 JACKS = [  # (first row index of pin 2, name, opening side, col of pins 2-5, col of pin 1)
     (11, "PADDLE", "r", 4, 3),          # rows L-P, opening at col-7 edge
@@ -23,7 +23,7 @@ JACKS = [  # (first row index of pin 2, name, opening side, col of pins 2-5, col
 RADIO_ROWS_HALF = "JK"                  # left half (cols 1-3) is radio side
 RADIO_ROWS_FULL = "QRSTU"               # whole row is radio side
 WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run is drawn along (x.5 = between)
-    ("D6", "J7", "G5", False, 6.5),
+    ("D6", "I7", "G5", False, 6.5),
     ("K6", "A3", "GND", False, 4.5),
     ("Q1", "J1", "key tip", False, 0.7),
     ("S1", "K1", "key sleeve", False, 0.35),
@@ -31,7 +31,7 @@ WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run
     ("P1", "D2", "dah", False, 2.5),
     ("N1", "A2", "pad GND", False, 1.5),
 ]
-SMT = [("J7", "J5", "470 Ω 1206")]       # copper side, bridging the cut between the two holes
+SMT = [("I6", "J6", "470 Ω 1206")]       # copper side, straddling the gap between two adjacent strips
 WIRE_COLORS = ["#1f5fa8", "#2a9d8f", "#c77d1a", "#8e44ad", "#d1495b", "#4f7f2a", "#1f5fa8"]
 
 # fixed colours (SVG files have no theme)
@@ -158,11 +158,18 @@ def wires(g):
     # SMT parts soldered flat on the copper side, spanning a cut hole
     for a, b, label in SMT:
         ax, ay = g.xy(a); bx, by = g.xy(b)
-        x0, x1 = sorted((ax, bx)); w = 3.2 / 2.54 * P
-        t.append(f'<rect x="{(x0+x1)/2-w/2}" y="{ay-8}" width="{w}" height="16" fill="#2b2b2b" stroke="{FG}" stroke-width="1" rx="1"/>'
-                 f'<rect x="{(x0+x1)/2-w/2}" y="{ay-8}" width="7" height="16" fill="#c8c8c8"/>'
-                 f'<rect x="{(x0+x1)/2+w/2-7}" y="{ay-8}" width="7" height="16" fill="#c8c8c8"/>'
-                 f'<text x="{(x0+x1)/2}" y="{ay+20}" font-size="9" text-anchor="middle" fill="{FG}" font-weight="600">{label}</text>')
+        cx, cy = (ax + bx) / 2, (ay + by) / 2; L = 3.2 / 2.54 * P; Wd = 1.6 / 2.54 * P
+        if ay == by: x0, y0, w, h = cx - L / 2, cy - Wd / 2, L, Wd        # across a cut in one strip
+        else:        x0, y0, w, h = cx - Wd / 2, cy - L / 2, Wd, L        # straddling two strips
+        cap = 7
+        t.append(f'<rect x="{x0}" y="{y0}" width="{w}" height="{h}" fill="#2b2b2b" stroke="{FG}" stroke-width="1" rx="1"/>')
+        if ay == by:
+            t.append(f'<rect x="{x0}" y="{y0}" width="{cap}" height="{h}" fill="#c8c8c8"/>'
+                     f'<rect x="{x0+w-cap}" y="{y0}" width="{cap}" height="{h}" fill="#c8c8c8"/>')
+        else:
+            t.append(f'<rect x="{x0}" y="{y0}" width="{w}" height="{cap}" fill="#c8c8c8"/>'
+                     f'<rect x="{x0}" y="{y0+h-cap}" width="{w}" height="{cap}" fill="#c8c8c8"/>')
+        t.append(f'<text x="{cx+Wd/2+4}" y="{cy+3}" font-size="9" fill="{FG}" font-weight="600">{label}</text>')
     return t
 
 
