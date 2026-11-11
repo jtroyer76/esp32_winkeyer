@@ -88,8 +88,8 @@ sending was clean. No instrument measurement yet; the RBN A/B in
 
 ## 2026-11-11: first RBN spots through the keyer
 
-mcHF on a van-mounted 20 m Hustler, N1MM+ CQ at 20 WPM through the Atom and
-PC817, 14070 kHz. Four skimmers in five minutes:
+Xiegu X6100 at 5 W (stock firmware) on a van-mounted 20 m Hustler, N1MM+ CQ
+at 20 WPM through the Atom and PC817, 14070 kHz. Four skimmers in five minutes:
 
 | Skimmer | Distance | SNR | WPM reported |
 |---|---|---|---|
@@ -101,6 +101,10 @@ PC817, 14070 kHz. Four skimmers in five minutes:
 The 2026-11-09 DTR/CH340 session had skimmers reporting 14-19 WPM. Not a
 matched A/B (different day and antenna), but the speed estimates now sit on
 the nominal value.
+
+Same keyer and antenna on the X6100's alternative firmware cards produced
+no RBN spots at all; only the stock firmware was heard. Cause not yet
+isolated (keying path, TX offset or power on the alternative firmware).
 
 ### Not yet tested
 
