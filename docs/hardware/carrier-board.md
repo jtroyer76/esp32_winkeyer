@@ -16,7 +16,7 @@ row is one net until it is cut. A hole is named by row then column: `J5`.
 
 ![schematic](schematic.svg)
 
-- G5 high → 470 Ω → PC817 LED (pin 1 → pin 2) → Atom GND. About 4.5 mA.
+- G5 high → 470 Ω (1206 SMT) → PC817 LED (pin 1 → pin 2) → Atom GND. About 4.5 mA.
 - The phototransistor shorts key-jack **tip** (pin 4, collector) to key-jack
   **sleeve** (pin 3, emitter). The radio sees its straight-key contacts close.
 - The Atom's ground and the radio's ground are never joined. The only thing
@@ -38,6 +38,7 @@ not key, pins 3 and 4 are swapped.
 |---|---|
 | A4 B4 C4 D4 | separates each Atom row into its left pin and its right pin |
 | J4 K4 | opto: Atom side (cols 5–7) from radio side (cols 1–3) |
+| J6 | knife cut, 1 mm gap: the 1206 resistor bridges it, J7 (wire from G5) to J5 (opto pin 1) |
 
 Jack rows L–P and Q–U need no cuts: each jack owns its rows. Shaded rows
 are the radio side; nothing on them may touch an Atom net. Meter every cut
@@ -45,7 +46,8 @@ afterwards: the two halves must read open.
 
 | Wire | From | To | Net |
 |---|---|---|---|
-| 470 Ω | D6 | J6 | G5 → opto pin 1 |
+| wire | D6 | J7 | G5 → resistor |
+| 470 Ω 1206 | J7 | J5 | across the J6 cut, copper side → opto pin 1 |
 | wire | K6 | A3 | opto pin 2 → GND |
 | wire | Q1 *or* U1 | J1 | key tip → opto pin 4 (collector) |
 | wire | S1 | K1 | key sleeve → opto pin 3 (emitter) |
@@ -53,9 +55,16 @@ afterwards: the two halves must read open.
 | wire | P1 *or* L1 | D2 | paddle ring (dah) → G39 |
 | wire | N1 | A2 | paddle sleeve → GND |
 
-Wires and the resistor lie on the component side, ends down through the
-holes, soldered on the copper side. There is 2.5 mm under the Atom; 22 AWG
-fits. Rows M, O, R, T carry the jacks' normally-closed switch contacts and
+Everything added goes on the **copper side**, so nothing has to fit under
+the Atom. Wires are enamelled magnet wire soldered straight onto the strip
+at the named hole (tin the pad, hold the wire end in the blob for a second
+so the enamel burns off, as in Tom Verbeure's magnet-wire note); the hole
+names are where the joints go, not holes to thread. The 1206 resistor sits
+flat across the J6 cut, one end toward J7 and the other toward J5. Make
+that cut with a knife, a 1 mm gap across the strip, not a spot-face
+scrape: the part is only 3.2 mm long with 0.5 mm end caps, and a 3.5 mm
+scraped ring would leave the caps over bare board. Tin one side, slide the
+part in, then do the other end. Rows M, O, R, T carry the jacks' normally-closed switch contacts and
 get nothing.
 
 Until the jacks arrive, the interim key lead goes tip into **J1**, sleeve
@@ -111,9 +120,8 @@ Same form as M5's Atomic bases (ATOM PWM base: 24 × 48 × 17.5 mm, drawing in
 
 ## Build order
 
-1. Cuts: A4 B4 C4 D4 J4 K4. Meter each.
-2. Resistor D6→J6 and GND wire K6→A3, with the Atom unplugged (they sit
-   under it).
+1. Cuts: A4 B4 C4 D4 J4 K4 J6. Meter each.
+2. 1206 resistor across J6 (J7 to J5). Magnet wires D6→J7 and K6→A3.
 3. Paddle wires to A5, D2, A2 and key wires to J1, K1; leave the jack ends
    long until the jacks are in.
 4. PC817, dot at J5.

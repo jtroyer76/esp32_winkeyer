@@ -14,7 +14,7 @@ COLS, ROWS = 7, 22                      # board: 7 x 22 holes (A..V)
 ATOM_L = {"A": "GND", "B": "5V", "C": "G38", "D": "G39"}        # col 1
 ATOM_R = {"A": "G8", "B": "G7", "C": "G6", "D": "G5", "E": "3V3"}  # col 7
 ATOM_BODY_ROWS = "ABCDEFGHI"            # Atom case covers these rows
-CUTS = ["A4", "B4", "C4", "D4", "J4", "K4"]
+CUTS = ["A4", "B4", "C4", "D4", "J4", "K4", "J6"]
 OPTO = [("J5", "1"), ("K5", "2"), ("K2", "3"), ("J2", "4")]      # PC817, dot = pin 1
 JACKS = [  # (first row index of pin 2, name, opening side, col of pins 2-5, col of pin 1)
     (11, "PADDLE", "r", 4, 3),          # rows L-P, opening at col-7 edge
@@ -23,7 +23,7 @@ JACKS = [  # (first row index of pin 2, name, opening side, col of pins 2-5, col
 RADIO_ROWS_HALF = "JK"                  # left half (cols 1-3) is radio side
 RADIO_ROWS_FULL = "QRSTU"               # whole row is radio side
 WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run is drawn along (x.5 = between)
-    ("D6", "J6", "470 Ω", True, None),
+    ("D6", "J7", "G5", False, 6.5),
     ("K6", "A3", "GND", False, 4.5),
     ("Q1", "J1", "key tip", False, 0.7),
     ("S1", "K1", "key sleeve", False, 0.35),
@@ -31,6 +31,7 @@ WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run
     ("P1", "D2", "dah", False, 2.5),
     ("N1", "A2", "pad GND", False, 1.5),
 ]
+SMT = [("J7", "J5", "470 Ω 1206")]       # copper side, bridging the cut between the two holes
 WIRE_COLORS = ["#1f5fa8", "#2a9d8f", "#c77d1a", "#8e44ad", "#d1495b", "#4f7f2a", "#1f5fa8"]
 
 # fixed colours (SVG files have no theme)
@@ -154,6 +155,14 @@ def wires(g):
             lx, ly = xm + 4, (ay + by) / 2 - 4
         t.append(f'<circle cx="{ax}" cy="{ay}" r="3.5" fill="{col}"/><circle cx="{bx}" cy="{by}" r="3.5" fill="{col}"/>')
         t.append(f'<text x="{lx}" y="{ly}" font-size="9" fill="{col}" font-weight="600">{label}</text>')
+    # SMT parts soldered flat on the copper side, spanning a cut hole
+    for a, b, label in SMT:
+        ax, ay = g.xy(a); bx, by = g.xy(b)
+        x0, x1 = sorted((ax, bx)); w = 3.2 / 2.54 * P
+        t.append(f'<rect x="{(x0+x1)/2-w/2}" y="{ay-8}" width="{w}" height="16" fill="#2b2b2b" stroke="{FG}" stroke-width="1" rx="1"/>'
+                 f'<rect x="{(x0+x1)/2-w/2}" y="{ay-8}" width="7" height="16" fill="#c8c8c8"/>'
+                 f'<rect x="{(x0+x1)/2+w/2-7}" y="{ay-8}" width="7" height="16" fill="#c8c8c8"/>'
+                 f'<text x="{(x0+x1)/2}" y="{ay+20}" font-size="9" text-anchor="middle" fill="{FG}" font-weight="600">{label}</text>')
     return t
 
 
@@ -165,7 +174,7 @@ def schematic():
 <text x="22" y="120" stroke="none">G8</text><line x1="84" y1="116" x2="120" y2="116"/>
 <text x="22" y="145" stroke="none">G39</text><line x1="84" y1="141" x2="120" y2="141"/>
 <text x="22" y="178" stroke="none">GND</text><line x1="84" y1="174" x2="120" y2="174"/>
-<rect x="120" y="59" width="36" height="14" fill="{PAD}"/><text x="122" y="54" stroke="none" font-size="10">470 Ω</text>
+<rect x="120" y="59" width="36" height="14" fill="{PAD}"/><text x="112" y="54" stroke="none" font-size="10">470 Ω (1206)</text>
 <line x1="156" y1="66" x2="200" y2="66"/>
 <rect x="200" y="46" width="90" height="80" fill="{PAD}"/>
 <text x="212" y="40" stroke="none" font-weight="600">PC817</text>

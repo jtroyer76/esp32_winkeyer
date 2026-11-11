@@ -79,7 +79,7 @@
 <circle cx="168" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="142" cy="268" r="7" fill="#ffffff" stroke="#c3362b" stroke-width="2"/><path d="M138 264L146 272M146 264L138 272" stroke="#c3362b" stroke-width="2"/>
 <circle cx="116" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<circle cx="90" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
+<circle cx="90" cy="268" r="7" fill="#ffffff" stroke="#c3362b" stroke-width="2"/><path d="M86 264L94 272M94 264L86 272" stroke="#c3362b" stroke-width="2"/>
 <circle cx="64" cy="268" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <rect x="157" y="283" width="74" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="298" font-size="11" fill="#6b665c">K</text>

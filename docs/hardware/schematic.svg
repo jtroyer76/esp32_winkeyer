@@ -5,7 +5,7 @@
 <text x="22" y="120" stroke="none">G8</text><line x1="84" y1="116" x2="120" y2="116"/>
 <text x="22" y="145" stroke="none">G39</text><line x1="84" y1="141" x2="120" y2="141"/>
 <text x="22" y="178" stroke="none">GND</text><line x1="84" y1="174" x2="120" y2="174"/>
-<rect x="120" y="59" width="36" height="14" fill="#ffffff"/><text x="122" y="54" stroke="none" font-size="10">470 Ω</text>
+<rect x="120" y="59" width="36" height="14" fill="#ffffff"/><text x="112" y="54" stroke="none" font-size="10">470 Ω (1206)</text>
 <line x1="156" y1="66" x2="200" y2="66"/>
 <rect x="200" y="46" width="90" height="80" fill="#ffffff"/>
 <text x="212" y="40" stroke="none" font-weight="600">PC817</text>
