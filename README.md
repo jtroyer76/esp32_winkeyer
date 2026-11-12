@@ -80,6 +80,13 @@ the port -> CW/Other -> Set -> WinKey). The keyer answers Host Open with
 revision 31. Speed, PTT timing, mode and echo all come from the logger.
 Verified with N1MM+ 2026-11-10: F1 macros key with exact element timing.
 
+If the radio's own USB/CAT port can also key it (Xiegu X6100 and others),
+set that port's DTR and RTS to "Always Off" or anything other than CW in
+N1MM's port settings. Unchecking CW on that port is not enough: RTS set to
+CW still toggles the pin on every macro, and the PC-timed RTS keying runs
+in parallel with the keyer, so the radio stays keyed after the keyer has
+released. It looks like the keyer sticking.
+
 ## Test console
 
 The console is on UART1 (TX = PIN_DEBUG_TX, 115200 8N1) in normal builds;

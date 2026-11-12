@@ -102,6 +102,11 @@ The 2026-11-09 DTR/CH340 session had skimmers reporting 14-19 WPM. Not a
 matched A/B (different day and antenna), but the speed estimates now sit on
 the nominal value.
 
+Intermittent "sticks in transmit" during this session, audible on a second
+receiver. Traced to N1MM still having RTS set to CW on the radio's CAT port
+while CW was unchecked; RTS keyed the radio in parallel with the keyer.
+Cleared after setting RTS off (a few dozen CQs to confirm still owed).
+
 Same keyer and antenna on the X6100's alternative firmware cards produced
 no RBN spots at all; only the stock firmware was heard. Cause not yet
 isolated (keying path, TX offset or power on the alternative firmware).
