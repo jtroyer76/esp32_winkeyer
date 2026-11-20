@@ -42,8 +42,8 @@ jack_hole_d  = 7.0;           // clears the jack nose and a typical plug barrel
 jack_spot_d  = 10;            // outside counterbore so the plug seats fully
 jack_wall_left = 1.2;         // wall left at the jack after the counterbore (face is ~1.2 mm in from the inner wall)
 jack_z_above_board = 6.5;
-key_row      = 11 + 2;        // N: key jack (rows L-P), opens on the x = outer_w wall (top, USB right)
-paddle_row   = 16 + 2;        // S: paddle jack (rows Q-U), opens on the x = 0 wall (bottom, toward you)
+paddle_row   = 11 + 2;        // N: paddle jack (rows L-P, middle), opens on the x = 0 wall (bottom, toward you)
+key_row      = 16 + 2;        // S: key jack (rows Q-U, far end), opens on the x = outer_w wall (top, USB right)
 
 // ---- Keyhole on the bottom, like the M5 base (3.2 mm slot, 6 mm head) ----
 keyhole      = true;
@@ -101,7 +101,7 @@ module tray() {
     }
     // ledge under row V (no joints there) at the far end
     translate([board_x0, row_y(21) - 1, floor_t]) cube([board_w, 2, board_gap]);
-    // posts under the jacks at column 7 (N7, S7 have no joints)
+    // posts under the jacks at column 7 (N7, S7 have no joints; key pin 1 is at S6)
     for (r = [key_row, paddle_row])
         translate([col_x(7), row_y(r), floor_t]) cylinder(d = 2, h = board_gap);
 }

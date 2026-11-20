@@ -4,16 +4,17 @@ AtomS3 Lite on 7 × 22 stripboard with one PC817 and two 3.5 mm jacks, in the
 form of an M5 "Atomic base": 24 mm wide, the Atom flush in the top at one end
 with its USB-C facing out, key jack out one long side, paddle jack out the
 other. Held with the USB-C to the right, the **key** jack (to the radio) is on
-the far side and the **paddle** jack is on the near side, toward you
-(swapped 2026-11-20, before the jacks were wired).
+the far side at the end away from the Atom, and the **paddle** jack is on the
+near side in the middle, toward you (settled 2026-11-20, before the jacks were
+wired).
 
 > **Orientation (fixed, confirmed 2026-11-20 — do not change):** viewed from
 > the component side, the Atom's USB-C sticks out the row-A end. Held with
-> the USB-C pointing **right**: the **KEY** jack (to the radio, rows L–P,
-> opening at the column-7 edge) comes out the **top / far side**, and the
-> **PADDLE** jack (rows Q–U, opening at the column-1 edge) comes out the
-> **bottom / near side**, toward the operator. Jack pin 1 sits two columns
-> toward its own opening (key N6, paddle S2).
+> the USB-C pointing **right**: the **KEY** jack (to the radio, rows Q–U at
+> the far end, opening at the column-7 edge) comes out the **top / far side**,
+> and the **PADDLE** jack (rows L–P in the middle, opening at the column-1
+> edge) comes out the **bottom / near side**, toward the operator. Jack pin 1
+> sits two columns toward its own opening (paddle N2, key S6).
 
 Drawings are generated from the netlist in [`gen_drawings.py`](gen_drawings.py);
 edit that file and re-run it rather than editing the SVGs.
@@ -49,7 +50,7 @@ not key, pins 3 and 4 are swapped.
 | A4 B4 C4 D4 | separates each Atom row into its left pin and its right pin |
 | J4 K4 | opto: Atom side (cols 5–7) from radio side (cols 1–3) |
 
-Jack rows L–P (key) and Q–U (paddle) need no cuts: each jack owns its rows. Shaded rows
+Jack rows L–P (paddle) and Q–U (key) need no cuts: each jack owns its rows. Shaded rows
 are the radio side; nothing on them may touch an Atom net. Meter every cut
 afterwards: the two halves must read open.
 
@@ -58,14 +59,16 @@ afterwards: the two halves must read open.
 | wire | D6 | I7 | G5 → row I |
 | 470 Ω 1206 | I6 | J6 | straddles the gap between strips I and J, copper side → opto pin 1 |
 | wire | K6 | A3 | opto pin 2 → GND |
-| wire | L1 *or* P1 | J1 | key tip → opto pin 4 (collector) |
-| wire | N1 | K1 | key sleeve → opto pin 3 (emitter) |
-| wire | Q5 *or* U5 | A5 | paddle tip (dit) → G8 |
-| wire | U1 *or* Q1 | D2 | paddle ring (dah) → G39 |
-| wire | S1 | A2 | paddle sleeve → GND |
+| wire | Q1 *or* U1 | J1 | key tip → opto pin 4 (collector) |
+| wire | S1 | K1 | key sleeve → opto pin 3 (emitter) |
+| wire | L5 *or* P5 | A5 | paddle tip (dit) → G8 |
+| wire | P2 *or* L2 | D2 | paddle ring (dah) → G39 |
+| wire | N3 | A2 | paddle sleeve → GND |
 
 The first hole of each "or" assumes jack pin 2 is the tip; use the second if
-the meter says pin 5 is.
+the meter says pin 5 is. The paddle joints in rows L–P stay out of column 1:
+the key wires (radio side) run up column 1 from Q and S to J and K, and must
+not lie on an Atom-side solder joint.
 
 Everything added goes on the **copper side**, so nothing has to fit under
 the Atom. Wires are enamelled magnet wire soldered straight onto the strip
@@ -91,8 +94,8 @@ This is the copper view mirrored left-to-right, so column 7 is on the left.
 |---|---|
 | AtomS3 Lite | 4-pin header A1–D1 (GND, 5V, G38, G39), 5-pin header A7–E7 (G8, G7, G6, G5, 3V3), as soldered. Body covers rows A–I; USB-C at the row-A end. |
 | PC817 | dot = pin 1 at **J5**, pin 2 K5 (Atom side); pin 3 K2, pin 4 J2 (radio side) |
-| Key jack | pins 2,3,4,5 in L4 M4 O4 P4; centre pin 1 in **N6**. Opening flush at the col-7 edge (far side, USB to the right). |
-| Paddle jack | pins 2,3,4,5 in Q4 R4 T4 U4; centre pin 1 in **S2**. Opening flush at the col-1 edge (near side). |
+| Paddle jack | pins 2,3,4,5 in L4 M4 O4 P4; centre pin 1 in **N2**. Opening at the col-1 edge (bottom/near side, USB to the right). |
+| Key jack | pins 2,3,4,5 in Q4 R4 T4 U4; centre pin 1 in **S6**. Opening at the col-7 edge (top/far side). |
 
 ### The jacks
 
@@ -113,7 +116,7 @@ A jack lies across the board (14.1 mm of its 17.8 mm width) with its face
 about 0.9 mm inside the board edge; the pins fix it to within half a
 millimetre. The case wall carries a 7 mm hole centred 6.5 mm above the
 board (datasheet front view; check with calipers) on the jack's centre row
-(N for key, S for paddle), counterbored outside so the plug seats.
+(N for paddle, S for key), counterbored outside so the plug seats.
 
 ## Case
 
@@ -125,7 +128,7 @@ Same form as M5's Atomic bases (ATOM PWM base: 24 × 48 × 17.5 mm, drawing in
 - Board 17.8 × 56 mm (7 × 22 holes). Atom body over rows A–I, flush in a
   24 × 24 opening in the top; USB-C out that end of the case.
 - Jacks 10 mm tall on the component side, openings in the long walls at
-  rows N (key, col-7 side) and S (paddle, col-1 side).
+  rows N (paddle, col-1 side) and S (key, col-7 side).
 - Inside about 19 × 58 × 13 mm; outside with 2 mm walls about 24 × 62 × 17.
 - Leave ~3 mm under the board for solder joints. A rib inside each long wall
   under the jack body takes the push-in force; the pins take pull-out.
@@ -155,5 +158,5 @@ Measure those on the board and re-export if anything is off.
 4. PC817, dot at J5.
 5. Interim key lead at J1/K1 straight to the radio's KEY jack. Radio in
    straight-key mode.
-6. Jacks at L–P (key) and Q–U (paddle) when they arrive; meter pin 2 vs 5
+6. Jacks at L–P (paddle) and Q–U (key) when they arrive; meter pin 2 vs 5
    for tip first. Remove the interim key lead.

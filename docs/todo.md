@@ -50,7 +50,7 @@ Layout in `docs/hardware/carrier-board.md` (stripboard, 2026-11-10).
 - [x] Built, key side (2026-11-10): cuts, 1206, wires, opto, interim key
       lead. Paddle wires and jacks still to do.
 - [ ] Jacks (Adafruit 1699) arrived; meter pin 2 vs 5 for tip before wiring.
-      Roles swapped 2026-11-20: key jack at L–P, paddle jack at Q–U.
+      Settled 2026-11-20: paddle jack at L–P (opens col-1 edge), key jack at Q–U (opens col-7 edge).
 - [ ] Case: `docs/hardware/case.scad` drafted (2026-11-20), Atomic-base
       style. Test-print it, then check `atom_standoff`, board size and jack
       height against the built board.

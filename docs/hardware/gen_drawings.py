@@ -17,20 +17,20 @@ ATOM_BODY_ROWS = "ABCDEFGHI"            # Atom case covers these rows
 CUTS = ["A4", "B4", "C4", "D4", "J4", "K4"]
 OPTO = [("J5", "1"), ("K5", "2"), ("K2", "3"), ("J2", "4")]      # PC817, dot = pin 1
 JACKS = [  # (first row index of pin 2, name, opening side, col of pins 2-5, col of pin 1)
-    (11, "KEY", "r", 4, 6),             # rows L-P, opening at col-7 edge (away from you, USB to the right)
-    (16, "PADDLE", "l", 4, 2),          # rows Q-U, opening at col-1 edge (toward you)
+    (11, "PADDLE", "l", 4, 2),          # rows L-P (middle), opening at col-1 edge (bottom/near side, USB to the right)
+    (16, "KEY", "r", 4, 6),             # rows Q-U (far end), opening at col-7 edge (top/far side)
     # pin 1 is 5 mm (two columns) TOWARD the opening from the pin 2-5 row (Kycon side view: face-3.0-pin1-5.0-pins)
 ]
 RADIO_ROWS_HALF = "JK"                  # left half (cols 1-3) is radio side
-RADIO_ROWS_FULL = "LMNOP"               # whole row is radio side (key jack)
+RADIO_ROWS_FULL = "QRSTU"               # whole row is radio side (key jack)
 WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run is drawn along (x.5 = between)
     ("D6", "I7", "G5", False, 6.5),
     ("K6", "A3", "GND", False, 4.5),
-    ("L1", "J1", "key tip", False, 0.7),
-    ("N1", "K1", "key sleeve", False, 0.35),
-    ("Q5", "A5", "dit", False, 5.5),
-    ("U1", "D2", "dah", False, 2.5),
-    ("S1", "A2", "pad GND", False, 1.5),
+    ("Q1", "J1", "key tip", False, 0.7),
+    ("S1", "K1", "key sleeve", False, 0.35),
+    ("L5", "A5", "dit", False, 5.5),
+    ("P2", "D2", "dah", False, 2.5),     # col 2/3, not col 1: the key wires run up col 1 past these rows
+    ("N3", "A2", "pad GND", False, 1.5),
 ]
 SMT = [("I6", "J6", "470 Ω 1206")]       # copper side, straddling the gap between two adjacent strips
 WIRE_COLORS = ["#1f5fa8", "#2a9d8f", "#c77d1a", "#8e44ad", "#d1495b", "#4f7f2a", "#1f5fa8"]
@@ -223,9 +223,9 @@ def case_plan():
 <rect x="10" y="10" width="{24*k}" height="{24*k}" fill="{ATOM}" stroke="{FG}" stroke-width="1.5" rx="6"/>
 <text x="{10+12*k}" y="{10+12*k+4}" font-size="9" text-anchor="middle" fill="{FG}">Atom flush</text>
 <rect x="{10+8*k}" y="6" width="{8*k}" height="6" fill="{ATOM}" stroke="{FG}"/><text x="{10+cw+8}" y="14" font-size="9" fill="{MUTED}">USB-C out the end</text>
-<rect x="{bx}" y="{pj}" width="{14.1*k}" height="{12*k}" fill="{RADIO}" stroke="{FG}"/><text x="{bx+7*k}" y="{pj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">◀ KEY</text>
-<rect x="{bx+3.7*k}" y="{kj}" width="{14.1*k}" height="{12*k}" fill="{ATOM}" stroke="{FG}"/><text x="{bx+10.7*k}" y="{kj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">PADDLE ▶</text>
-<circle cx="10" cy="{pj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/><circle cx="{10+cw}" cy="{kj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/>
+<rect x="{bx+3.7*k}" y="{pj}" width="{14.1*k}" height="{12*k}" fill="{ATOM}" stroke="{FG}"/><text x="{bx+10.7*k}" y="{pj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">PADDLE ▶</text>
+<rect x="{bx}" y="{kj}" width="{14.1*k}" height="{12*k}" fill="{RADIO}" stroke="{FG}"/><text x="{bx+7*k}" y="{kj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">◀ KEY</text>
+<circle cx="{10+cw}" cy="{pj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/><circle cx="10" cy="{kj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/>
 <text x="10" y="{ch+50}" font-size="10" font-weight="700" fill="{FG}">TOP VIEW (Atom up)</text>
 <text x="10" y="{ch+64}" font-size="9" fill="{FG}">Turn 90° clockwise: USB right,</text>
 <text x="10" y="{ch+76}" font-size="9" fill="{FG}">KEY top, PADDLE bottom</text>
