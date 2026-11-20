@@ -27,6 +27,13 @@ timing never depends on code running in `loop()`.
   steps rather than doing it for them. Verify facts before claiming them;
   flag guesses.
 
+## Hardware orientation (settled; don't re-derive or change)
+
+USB-C to the right: **key jack out the top (far side, rows L–P, col-7 edge),
+paddle jack out the bottom (near side, rows Q–U, col-1 edge).** Jack pin 1 is
+two columns toward its own opening (key N6, paddle S2). Details in
+`docs/hardware/carrier-board.md`.
+
 ## Build / flash
 
 ```

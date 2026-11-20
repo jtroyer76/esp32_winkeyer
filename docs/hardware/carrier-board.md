@@ -7,6 +7,14 @@ other. Held with the USB-C to the right, the **key** jack (to the radio) is on
 the far side and the **paddle** jack is on the near side, toward you
 (swapped 2026-11-20, before the jacks were wired).
 
+> **Orientation (fixed, confirmed 2026-11-20 — do not change):** viewed from
+> the component side, the Atom's USB-C sticks out the row-A end. Held with
+> the USB-C pointing **right**: the **KEY** jack (to the radio, rows L–P,
+> opening at the column-7 edge) comes out the **top / far side**, and the
+> **PADDLE** jack (rows Q–U, opening at the column-1 edge) comes out the
+> **bottom / near side**, toward the operator. Jack pin 1 sits two columns
+> toward its own opening (key N6, paddle S2).
+
 Drawings are generated from the netlist in [`gen_drawings.py`](gen_drawings.py);
 edit that file and re-run it rather than editing the SVGs.
 
