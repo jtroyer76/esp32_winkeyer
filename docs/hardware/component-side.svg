@@ -90,6 +90,7 @@
 <circle cx="116" cy="294" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="294" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="294" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
+<rect x="53" y="309" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="324" font-size="11" fill="#6b665c">L</text>
 <circle cx="220" cy="320" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="320" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -98,6 +99,7 @@
 <circle cx="116" cy="320" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="320" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="320" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
+<rect x="53" y="335" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="350" font-size="11" fill="#6b665c">M</text>
 <circle cx="220" cy="346" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="346" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -106,6 +108,7 @@
 <circle cx="116" cy="346" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="346" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="346" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
+<rect x="53" y="361" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="376" font-size="11" fill="#6b665c">N</text>
 <circle cx="220" cy="372" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="372" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -114,6 +117,7 @@
 <circle cx="116" cy="372" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="372" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="372" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
+<rect x="53" y="387" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="402" font-size="11" fill="#6b665c">O</text>
 <circle cx="220" cy="398" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="398" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -122,6 +126,7 @@
 <circle cx="116" cy="398" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="398" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="398" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
+<rect x="53" y="413" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="428" font-size="11" fill="#6b665c">P</text>
 <circle cx="220" cy="424" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="424" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -130,7 +135,6 @@
 <circle cx="116" cy="424" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="424" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="424" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<rect x="53" y="439" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="454" font-size="11" fill="#6b665c">Q</text>
 <circle cx="220" cy="450" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="450" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -139,7 +143,6 @@
 <circle cx="116" cy="450" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="450" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="450" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<rect x="53" y="465" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="480" font-size="11" fill="#6b665c">R</text>
 <circle cx="220" cy="476" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="476" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -148,7 +151,6 @@
 <circle cx="116" cy="476" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="476" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="476" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<rect x="53" y="491" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="506" font-size="11" fill="#6b665c">S</text>
 <circle cx="220" cy="502" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="502" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -157,7 +159,6 @@
 <circle cx="116" cy="502" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="502" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="502" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<rect x="53" y="517" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="532" font-size="11" fill="#6b665c">T</text>
 <circle cx="220" cy="528" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="528" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -166,7 +167,6 @@
 <circle cx="116" cy="528" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="90" cy="528" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="64" cy="528" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
-<rect x="53" y="543" width="178" height="22" fill="#e9d8c4" opacity=".9" rx="4"/>
 <text x="286" y="558" font-size="11" fill="#6b665c">U</text>
 <circle cx="220" cy="554" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
 <circle cx="194" cy="554" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>
@@ -206,7 +206,7 @@
 <circle cx="194" cy="294" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="194" y="297.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">3</text>
 <circle cx="194" cy="268" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="194" y="271.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">4</text>
 <rect x="51" y="306" width="144.33070866141733" height="132" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2" stroke-dasharray="4 3" rx="4" opacity=".92"/>
-<text x="189.33070866141733" y="318" font-size="9" text-anchor="end" fill="#1d1b17">PADDLE</text>
+<text x="189.33070866141733" y="318" font-size="9" text-anchor="end" fill="#1d1b17">KEY</text>
 <text x="42" y="376.0" font-size="11" text-anchor="middle" fill="#1d1b17">◀</text>
 <circle cx="142" cy="320" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="323.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">2</text>
 <circle cx="142" cy="346" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="349.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">3</text>
@@ -214,7 +214,7 @@
 <circle cx="142" cy="424" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="427.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">5</text>
 <circle cx="168" cy="372" r="5" fill="#1d1b17" stroke="#1d1b17" stroke-width="1.2"/><text x="168" y="375.5" font-size="8" text-anchor="middle" fill="#ffffff" font-weight="600">1</text>
 <rect x="88.66929133858267" y="436" width="144.33070866141733" height="132" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2" stroke-dasharray="4 3" rx="4" opacity=".92"/>
-<text x="94.66929133858267" y="448" font-size="9" text-anchor="start" fill="#1d1b17">KEY</text>
+<text x="94.66929133858267" y="448" font-size="9" text-anchor="start" fill="#1d1b17">PADDLE</text>
 <text x="242" y="506.0" font-size="11" text-anchor="middle" fill="#1d1b17">▶</text>
 <circle cx="142" cy="450" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="453.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">2</text>
 <circle cx="142" cy="476" r="5" fill="#ffffff" stroke="#1d1b17" stroke-width="1.2"/><text x="142" y="479.5" font-size="8" text-anchor="middle" fill="#1d1b17" font-weight="600">3</text>

@@ -49,10 +49,11 @@ Layout in `docs/hardware/carrier-board.md` (stripboard, 2026-11-10).
 
 - [x] Built, key side (2026-11-10): cuts, 1206, wires, opto, interim key
       lead. Paddle wires and jacks still to do.
-- [ ] Jacks (Adafruit 1699) on order; meter pin 2 vs 5 for tip before wiring.
-- [ ] Case: pull `AtomS3-Lite.stl` (github.com/m5stack/M5_Hardware,
-      Products/C124_AtomS3-Lite/Structures) for the opening; model a 24 mm
-      tray per the case section of the layout doc.
+- [ ] Jacks (Adafruit 1699) arrived; meter pin 2 vs 5 for tip before wiring.
+      Roles swapped 2026-11-20: key jack at L–P, paddle jack at Q–U.
+- [ ] Case: `docs/hardware/case.scad` drafted (2026-11-20), Atomic-base
+      style. Test-print it, then check `atom_standoff`, board size and jack
+      height against the built board.
 - [ ] Later: second PC817 + jack for PTT, 10 k / 100 nF on the paddle lines.
 
 ## Docs
