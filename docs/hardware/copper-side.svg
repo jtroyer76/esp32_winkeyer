@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 374 624" width="374" height="624" font-family="Menlo,Consolas,monospace" style="background:#ffffff">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 374 654" width="374" height="654" font-family="Menlo,Consolas,monospace" style="background:#ffffff">
 <rect x="4" y="4" width="276" height="606" fill="#2f6b3a" opacity=".25"/>
+<text x="8" y="640" font-size="11" font-weight="700" fill="#1d1b17">COPPER SIDE: seen from BELOW (mirror image of the top view)</text>
 <rect x="55" y="27" width="174" height="14" rx="7" fill="#c98a52"/>
 <text x="12" y="38" font-size="11" fill="#6b665c">A</text>
 <circle cx="64" cy="34" r="3.2" fill="#ffffff" stroke="#5a3516" stroke-width=".8"/>

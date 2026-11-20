@@ -5,7 +5,9 @@
 // Orientation: USB-C to the RIGHT, viewed from above. KEY jack (to the radio) out the top/far wall,
 // PADDLE jack out the bottom/near wall, toward you.
 //
-// Coordinates: y = 0 at the USB-C end, x = 0 on the far (KEY, column 7) side, z = 0 at the bottom.
+// Coordinates (seen from above, z up): y = 0 at the USB-C end, z = 0 at the bottom.
+// x = 0 is the PADDLE (column 1) wall, x = outer_w the KEY (column 7) wall. Check: with y = 0 at the bottom of
+// the screen the key wall is on the right; turn 90° counterclockwise so USB points right and the key wall is on top.
 // Two parts: the tray (print open side up) and the lid over the jack end (print flat).
 // The carrier hangs from the Atom's headers and rests on a ledge under row V plus two posts.
 //
@@ -40,8 +42,8 @@ jack_hole_d  = 7.0;           // clears the jack nose and a typical plug barrel
 jack_spot_d  = 10;            // outside counterbore so the plug seats fully
 jack_wall_left = 1.2;         // wall left at the jack after the counterbore (face is ~1.2 mm in from the inner wall)
 jack_z_above_board = 6.5;
-key_row      = 11 + 2;        // N: key jack (rows L-P), opens on the x = 0 wall
-paddle_row   = 16 + 2;        // S: paddle jack (rows Q-U), opens on the x = outer_w wall
+key_row      = 11 + 2;        // N: key jack (rows L-P), opens on the x = outer_w wall (top, USB right)
+paddle_row   = 16 + 2;        // S: paddle jack (rows Q-U), opens on the x = 0 wall (bottom, toward you)
 
 // ---- Keyhole on the bottom, like the M5 base (3.2 mm slot, 6 mm head) ----
 keyhole      = true;
@@ -66,7 +68,7 @@ pocket_end_y = atom_l + 0.3;                        // walls step down until her
 jack_z       = board_top_z + jack_z_above_board;
 wall_t       = board_x0 - clr;
 function row_y(r) = board_y0 + row_a_y + r * pitch;
-function col_x(c) = board_x0 + pitch / 2 + (7 - c) * pitch;   // col 7 nearest x = 0
+function col_x(c) = board_x0 + pitch / 2 + (c - 1) * pitch;   // col 1 nearest x = 0, col 7 nearest x = outer_w
 
 $fn = 48;
 
@@ -85,12 +87,12 @@ module tray() {
         // lid rebate over the jack end
         translate([board_x0 - clr - 1, pocket_end_y - 0.01, outer_h - lid_t])
             cube([inner_w + 2, outer_l - far_wall + 1 - pocket_end_y, lid_t + 1]);
-        // KEY jack: x = 0 wall, row N
-        translate([-1, row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
-        translate([-1, row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_spot_d, h = 1 + wall_t - jack_wall_left);
-        // PADDLE jack: x = outer_w wall, row S
-        translate([outer_w - wall_t - 1, row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
-        translate([outer_w - (wall_t - jack_wall_left), row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_spot_d, h = wall_t);
+        // PADDLE jack: x = 0 wall, row S
+        translate([-1, row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
+        translate([-1, row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_spot_d, h = 1 + wall_t - jack_wall_left);
+        // KEY jack: x = outer_w wall, row N
+        translate([outer_w - wall_t - 1, row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
+        translate([outer_w - (wall_t - jack_wall_left), row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_spot_d, h = wall_t);
         // keyhole under rows G-H (no solder joints there); the screw head ends up inside, under the board
         if (keyhole) translate([outer_w / 2, row_y(6), -0.01]) {
             cylinder(d = keyhole_head, h = floor_t + 0.02);

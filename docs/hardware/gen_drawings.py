@@ -59,9 +59,12 @@ class Grid:
 
     def board(self, copper):
         W, H = self.W, self.H
-        s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W+90} {H+10}" width="{W+90}" height="{H+10}" '
+        s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W+90} {H+40}" width="{W+90}" height="{H+40}" '
              f'font-family="Menlo,Consolas,monospace" style="background:{BG}">']
         s.append(f'<rect x="4" y="4" width="{W-8}" height="{H-8}" fill="#2f6b3a" opacity=".25"/>')
+        view = ("COPPER SIDE: seen from BELOW (mirror image of the top view)" if copper
+                else "COMPONENT SIDE: seen from ABOVE, Atom up (true top view)")
+        s.append(f'<text x="8" y="{H+26}" font-size="11" font-weight="700" fill="{FG}">{view}</text>')
         for r in range(ROWS):
             L = row_letter(r); y = self.Y(r)
             x1, x2 = sorted((self.X(1), self.X(7)))
@@ -214,15 +217,18 @@ def case_plan():
     k = 4; cw, ch = 24 * k, 62 * k
     bx, by = 10 + (24 - 17.8) / 2 * k, 10 + 2 * k
     pj, kj = by + 11 * 2.54 * k, by + 16 * 2.54 * k
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {cw+150} {ch+40}" width="{cw+150}" height="{ch+40}" font-family="Menlo,Consolas,monospace" style="background:{BG}">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {cw+150} {ch+86}" width="{cw+150}" height="{ch+86}" font-family="Menlo,Consolas,monospace" style="background:{BG}">
 <rect x="10" y="10" width="{cw}" height="{ch}" fill="{PAD}" stroke="{FG}" stroke-width="2" rx="6"/>
 <rect x="{bx}" y="{by}" width="{17.8*k}" height="{55.9*k}" fill="{COPPER}" opacity=".45"/>
 <rect x="10" y="10" width="{24*k}" height="{24*k}" fill="{ATOM}" stroke="{FG}" stroke-width="1.5" rx="6"/>
 <text x="{10+12*k}" y="{10+12*k+4}" font-size="9" text-anchor="middle" fill="{FG}">Atom flush</text>
 <rect x="{10+8*k}" y="6" width="{8*k}" height="6" fill="{ATOM}" stroke="{FG}"/><text x="{10+cw+8}" y="14" font-size="9" fill="{MUTED}">USB-C out the end</text>
-<rect x="{bx+3.7*k}" y="{pj}" width="{14.1*k}" height="{12*k}" fill="{RADIO}" stroke="{FG}"/><text x="{bx+10.7*k}" y="{pj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">KEY ▶</text>
-<rect x="{bx}" y="{kj}" width="{14.1*k}" height="{12*k}" fill="{ATOM}" stroke="{FG}"/><text x="{bx+7*k}" y="{kj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">◀ PADDLE</text>
-<circle cx="{10+cw}" cy="{pj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/><circle cx="10" cy="{kj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/>
+<rect x="{bx}" y="{pj}" width="{14.1*k}" height="{12*k}" fill="{RADIO}" stroke="{FG}"/><text x="{bx+7*k}" y="{pj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">◀ KEY</text>
+<rect x="{bx+3.7*k}" y="{kj}" width="{14.1*k}" height="{12*k}" fill="{ATOM}" stroke="{FG}"/><text x="{bx+10.7*k}" y="{kj+6*k+3}" font-size="8" text-anchor="middle" fill="{FG}">PADDLE ▶</text>
+<circle cx="10" cy="{pj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/><circle cx="{10+cw}" cy="{kj+6*k}" r="7" fill="{PAD}" stroke="{FG}"/>
+<text x="10" y="{ch+50}" font-size="10" font-weight="700" fill="{FG}">TOP VIEW (Atom up)</text>
+<text x="10" y="{ch+64}" font-size="9" fill="{FG}">Turn 90° clockwise: USB right,</text>
+<text x="10" y="{ch+76}" font-size="9" fill="{FG}">KEY top, PADDLE bottom</text>
 <text x="{10+cw/2}" y="{ch+32}" font-size="10" text-anchor="middle" fill="{MUTED}">24 mm</text>
 <text x="{cw+30}" y="{10+ch/2}" font-size="10" fill="{MUTED}">≈ 62 mm long</text>
 <text x="{cw+30}" y="{10+ch/2+14}" font-size="10" fill="{MUTED}">≈ 17 mm tall</text>
