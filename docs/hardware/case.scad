@@ -35,11 +35,11 @@ end_wall     = 1.6;           // wall under the Atom at the USB end
 clr          = 0.3;           // board clearance all round
 far_wall     = 2;
 
-// ---- Jacks (Kycon STX-3120: plug centre about 5 mm above the board) ----
-jack_hole_d  = 6.4;
+// ---- Jacks (Kycon STX-3120: hole centre 6.5 mm above the board, face about 0.9 mm inside the board edge) ----
+jack_hole_d  = 7.0;           // clears the jack nose and a typical plug barrel
 jack_spot_d  = 10;            // outside counterbore so the plug seats fully
-jack_wall_left = 1.6;         // wall left at the jack after the counterbore
-jack_z_above_board = 5;
+jack_wall_left = 1.2;         // wall left at the jack after the counterbore (face is ~1.2 mm in from the inner wall)
+jack_z_above_board = 6.5;
 key_row      = 11 + 2;        // N: key jack (rows L-P), opens on the x = 0 wall
 paddle_row   = 16 + 2;        // S: paddle jack (rows Q-U), opens on the x = outer_w wall
 

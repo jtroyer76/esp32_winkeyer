@@ -17,8 +17,9 @@ ATOM_BODY_ROWS = "ABCDEFGHI"            # Atom case covers these rows
 CUTS = ["A4", "B4", "C4", "D4", "J4", "K4"]
 OPTO = [("J5", "1"), ("K5", "2"), ("K2", "3"), ("J2", "4")]      # PC817, dot = pin 1
 JACKS = [  # (first row index of pin 2, name, opening side, col of pins 2-5, col of pin 1)
-    (11, "KEY", "r", 4, 3),             # rows L-P, opening at col-7 edge (away from you, USB to the right)
-    (16, "PADDLE", "l", 4, 5),          # rows Q-U, opening at col-1 edge (toward you)
+    (11, "KEY", "r", 4, 6),             # rows L-P, opening at col-7 edge (away from you, USB to the right)
+    (16, "PADDLE", "l", 4, 2),          # rows Q-U, opening at col-1 edge (toward you)
+    # pin 1 is 5 mm (two columns) TOWARD the opening from the pin 2-5 row (Kycon side view: face-3.0-pin1-5.0-pins)
 ]
 RADIO_ROWS_HALF = "JK"                  # left half (cols 1-3) is radio side
 RADIO_ROWS_FULL = "LMNOP"               # whole row is radio side (key jack)

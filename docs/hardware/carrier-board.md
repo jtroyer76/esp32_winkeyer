@@ -83,25 +83,29 @@ This is the copper view mirrored left-to-right, so column 7 is on the left.
 |---|---|
 | AtomS3 Lite | 4-pin header A1–D1 (GND, 5V, G38, G39), 5-pin header A7–E7 (G8, G7, G6, G5, 3V3), as soldered. Body covers rows A–I; USB-C at the row-A end. |
 | PC817 | dot = pin 1 at **J5**, pin 2 K5 (Atom side); pin 3 K2, pin 4 J2 (radio side) |
-| Key jack | pins 2,3,4,5 in L4 M4 O4 P4; centre pin 1 in N3. Opening flush at the col-7 edge (far side, USB to the right). |
-| Paddle jack | pins 2,3,4,5 in Q4 R4 T4 U4; centre pin 1 in S5. Opening flush at the col-1 edge (near side). |
+| Key jack | pins 2,3,4,5 in L4 M4 O4 P4; centre pin 1 in **N6**. Opening flush at the col-7 edge (far side, USB to the right). |
+| Paddle jack | pins 2,3,4,5 in Q4 R4 T4 U4; centre pin 1 in **S2**. Opening flush at the col-1 edge (near side). |
 
 ### The jacks
 
 Adafruit 1699 = Kycon STX-3120-5B (drawing: [`../reference/Kycon_STX-3120_jack.pdf`](../reference/Kycon_STX-3120_jack.pdf)).
-Five pins in a line at 2.5 mm pitch, order **2 3 1 4 5**; the centre pin 1
-sits 2 mm behind the other four, which is why it lands one column inboard
-on a 0.1" grid. Body 12 × 10 × 14.1 mm; plug enters parallel to the board.
+Pins 2 3 4 5 in a line at 2.5 mm pitch (front view order **2 3 1 4 5**).
+Pin 1, the centre one, is **5 mm toward the opening** from that line: the
+side view gives face → 3.0 mm → pin 1 → 5.0 mm → pins 2–5. On a 0.1" grid
+that is two columns toward the opening edge (corrected 2026-11-20; earlier
+versions of this doc had pin 1 one column behind the line, which is wrong).
+With pins 2–5 in column 4 the jack face ends up about 0.9 mm inside the
+board edge. Body 12 × 10 × 14.1 mm; plug enters parallel to the board.
 Pin 1 is the sleeve. Pins 2 and 5 are the tip and ring springs (the drawing
 does not say which is which; meter from a plug's tip to pins 2 and 5 and
 wire the tip row accordingly). Pins 3 and 4 are the normally-closed switch
 contacts, unused.
 
 A jack lies across the board (14.1 mm of its 17.8 mm width) with its face
-flush at the board edge; the pins fix it to within half a millimetre. The
-case wall then carries a 6 mm hole centred 5 mm above the board on the
-jack's centre row (N for key, S for paddle). A 2 mm wall is a normal panel
-recess; the plug seats fully.
+about 0.9 mm inside the board edge; the pins fix it to within half a
+millimetre. The case wall carries a 7 mm hole centred 6.5 mm above the
+board (datasheet front view; check with calipers) on the jack's centre row
+(N for key, S for paddle), counterbored outside so the plug seats.
 
 ## Case
 
@@ -130,7 +134,7 @@ step at the USB end, lid over the jack end, keyhole on the bottom. STLs:
 
 The first print is a **test fit**. The values that come from the doc rather
 than the built board are `atom_standoff` (board top to the Atom's underside,
-2.5 mm assumed), the board size, and the jack centre 5 mm above the board.
+2.5 mm assumed), the board size, and the jack centre 6.5 mm above the board.
 Measure those on the board and re-export if anything is off.
 
 ## Build order
