@@ -17,31 +17,35 @@ part = "both";          // "tray", "lid" or "both"
 
 // ---- Board (MEASURE) ----
 pitch        = 2.54;
-board_w      = 7 * pitch;     // 17.8 mm, columns 1-7
-board_l      = 22 * pitch;    // 55.9 mm, rows A-V
-board_t      = 1.6;
-row_a_y      = pitch / 2;     // row A centre from the board's USB-end edge
-board_gap    = 3;             // solder-joint clearance under the board
+board_w      = 20.87;         // measured 2026-11-21 (wider than 7 columns; margin assumed equal both sides)
+board_l      = 56.84;         // measured
+board_t      = 1.17;          // measured
+col_margin   = (board_w - 7 * pitch) / 2;                // long edge to the edge of column 1's pitch cell (assumed equal;
+                                                         // headers are in cols 1 and 7, centred on the Atom)
+board_gap    = 2.5;           // under-board clearance; solder sticks out 1.5-2 mm (measured)
 
 // ---- Atom (MEASURE atom_standoff) ----
 atom_w       = 24;
 atom_l       = 24;
 atom_h       = 10;
-atom_standoff = 2.5;          // board top to the underside of the Atom body (header plastic)
+atom_standoff = 3.68 - 1.17;  // measured: board bottom to Atom bottom 3.68, minus the board
+atom_overhang = 2;            // measured: the Atom sticks 2 mm past the board's USB-end edge
+atom_pin1_y  = 4.5;           // measured: Atom USB-end face to the centre of its first header pin (row A)
 
 // ---- Case ----
-outer_w      = 24;
+outer_w      = 26;            // 24 like the Atom leaves 1.27 mm walls around the 20.87 mm board; 26 gives 2 mm
 corner_r     = 3;             // R3 like the M5 bases
 floor_t      = 2;
 end_wall     = 1.6;           // wall under the Atom at the USB end
 clr          = 0.3;           // board clearance all round
 far_wall     = 2;
 
-// ---- Jacks (Kycon STX-3120: hole centre 6.5 mm above the board, face about 0.9 mm inside the board edge) ----
-jack_hole_d  = 7.0;           // clears the jack nose and a typical plug barrel
-jack_spot_d  = 10;            // outside counterbore so the plug seats fully
-jack_wall_left = 1.2;         // wall left at the jack after the counterbore (face is ~1.2 mm in from the inner wall)
-jack_z_above_board = 6.5;
+// ---- Jacks (Kycon STX-3120: hole centre 6.5 mm above the board (measured)) ----
+jack_proud   = 0.5;           // measured: the jack front sticks 0.5 mm past the board's long edge
+plug_d       = 6.75;          // measured: plug body diameter
+jack_hole_d  = max(plug_d, 6.82) + 0.6;  // straight through the wall: the plug body reaches the jack front and seats fully
+jack_body_w  = 7.4;           // relief in the inner wall for the jack body (6.82 measured)
+jack_z_above_board = 6.5;     // measured 2026-11-21 directly (matches the datasheet)
 paddle_row   = 11 + 2;        // N: paddle jack (rows L-P, middle), opens on the x = 0 wall (bottom, toward you)
 key_row      = 16 + 2;        // S: key jack (rows Q-U, far end), opens on the x = outer_w wall (top, USB right)
 
@@ -56,7 +60,8 @@ lid_t        = 1.6;
 lid_clr      = 0.25;
 
 // ---- Derived ----
-board_y0     = end_wall + clr;
+atom_y0      = end_wall + clr;                      // Atom's USB-end face
+board_y0     = atom_y0 + atom_overhang;
 board_x0     = (outer_w - board_w) / 2;
 board_bot_z  = floor_t + board_gap;
 board_top_z  = board_bot_z + board_t;
@@ -64,11 +69,11 @@ atom_bot_z   = board_top_z + atom_standoff;
 outer_h      = atom_bot_z + atom_h;                 // flush with the Atom top
 outer_l      = board_y0 + board_l + clr + far_wall;
 inner_w      = board_w + 2 * clr;
-pocket_end_y = atom_l + 0.3;                        // walls step down until here
+pocket_end_y = atom_y0 + atom_l + 0.3;              // walls step down until here
 jack_z       = board_top_z + jack_z_above_board;
 wall_t       = board_x0 - clr;
-function row_y(r) = board_y0 + row_a_y + r * pitch;
-function col_x(c) = board_x0 + pitch / 2 + (c - 1) * pitch;   // col 1 nearest x = 0, col 7 nearest x = outer_w
+function row_y(r) = atom_y0 + atom_pin1_y + r * pitch;   // rows located from the Atom's first header pin
+function col_x(c) = board_x0 + col_margin + pitch / 2 + (c - 1) * pitch;   // col 1 nearest x = 0, col 7 nearest x = outer_w
 
 $fn = 48;
 
@@ -87,12 +92,14 @@ module tray() {
         // lid rebate over the jack end
         translate([board_x0 - clr - 1, pocket_end_y - 0.01, outer_h - lid_t])
             cube([inner_w + 2, outer_l - far_wall + 1 - pocket_end_y, lid_t + 1]);
-        // PADDLE jack: x = 0 wall, row S
+        // PADDLE jack: x = 0 wall, row N. Plug hole straight through, plus a relief for the jack body sticking past the board edge.
         translate([-1, row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
-        translate([-1, row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_spot_d, h = 1 + wall_t - jack_wall_left);
-        // KEY jack: x = outer_w wall, row N
+        translate([board_x0 - jack_proud - 0.3, row_y(paddle_row) - jack_body_w / 2, board_top_z - 0.5])
+            cube([jack_proud + 0.5, jack_body_w, jack_z - board_top_z + jack_body_w / 2 + 0.5]);
+        // KEY jack: x = outer_w wall, row S
         translate([outer_w - wall_t - 1, row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
-        translate([outer_w - (wall_t - jack_wall_left), row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_spot_d, h = wall_t);
+        translate([board_x0 + board_w - 0.2, row_y(key_row) - jack_body_w / 2, board_top_z - 0.5])
+            cube([jack_proud + 0.5, jack_body_w, jack_z - board_top_z + jack_body_w / 2 + 0.5]);
         // keyhole under rows G-H (no solder joints there); the screw head ends up inside, under the board
         if (keyhole) translate([outer_w / 2, row_y(6), -0.01]) {
             cylinder(d = keyhole_head, h = floor_t + 0.02);
@@ -114,5 +121,5 @@ module lid() {
 if (part == "tray" || part == "both") tray();
 if (part == "lid"  || part == "both") translate([outer_w + 6, 0, 0]) lid();
 
-echo(str("Outside ", outer_w, " x ", outer_l, " x ", outer_h, " mm; step (Atom underside) at z = ", atom_bot_z,
-         "; jack centres at z = ", jack_z));
+echo(str("Wall at the jacks ", wall_t, " mm; Outside ", outer_w, " x ", outer_l, " x ", outer_h, " mm; step (Atom underside) at z = ", atom_bot_z,
+         "; jack centres at z = ", jack_z, "; plug hole top at z = ", jack_z + jack_hole_d / 2, " (lid rebate at ", outer_h - lid_t, ")"));

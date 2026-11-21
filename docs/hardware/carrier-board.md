@@ -141,12 +141,22 @@ Same form as M5's Atomic bases (ATOM PWM base: 24 × 48 × 17.5 mm, drawing in
 [`case.scad`](case.scad) models it: rounded R3 box like the M5 bases, Atom
 step at the USB end, lid over the jack end, keyhole on the bottom. STLs:
 [`case-tray.stl`](case-tray.stl) (print open side up) and
-[`case-lid.stl`](case-lid.stl) (print flat). About 24 × 60 × 19 mm.
+[`case-lid.stl`](case-lid.stl) (print flat). About 26 × 63 × 18.2 mm: 2 mm wider
+than the Atom, because the board is 20.87 mm wide and 24 would leave 1.3 mm walls.
 
-The first print is a **test fit**. The values that come from the doc rather
-than the built board are `atom_standoff` (board top to the Atom's underside,
-2.5 mm assumed), the board size, and the jack centre 6.5 mm above the board.
-Measure those on the board and re-export if anything is off.
+Measured on the built board (2026-11-21), all in `case.scad`:
+- Board 20.87 × 56.84 mm, 1.17 mm thick. Solder sticks out 1.5–2 mm underneath.
+- The Atom overhangs the board's USB-end edge by 2 mm. Its first header pin
+  (row A) is 4.5 mm from the Atom's USB-end face; the case locates all rows from that.
+- Board bottom to Atom bottom 3.68 mm (so 2.51 mm board top to Atom).
+- Jack centres 6.5 mm above the board top. The jack fronts stick 0.5 mm past
+  the board's long edge, so each plug hole (7.4 mm) goes straight through the
+  wall and the plug (6.75 mm body) seats against the jack. A 0.8 mm recess
+  inside the wall clears the jack body.
+- Still assumed: columns centred across the board (equal side margins).
+
+Keyhole screw: the head ends up under the board, where the gap is 2.5 mm, so
+use a low-head screw (head 2 mm or less).
 
 ## Build order
 
