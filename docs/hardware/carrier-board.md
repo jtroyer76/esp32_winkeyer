@@ -139,7 +139,7 @@ Same form as M5's Atomic bases (ATOM PWM base: 24 × 48 × 17.5 mm, drawing in
 ### Printed case
 
 [`case.scad`](case.scad) models it: rounded R3 box like the M5 bases, Atom
-step at the USB end, lid over the jack end, keyhole on the bottom. STLs:
+step at the USB end, snap-in lid over the jack end. STLs:
 [`case-tray.stl`](case-tray.stl) (print open side up) and
 [`case-lid.stl`](case-lid.stl) (print flat). About 26 × 63 × 18.2 mm: 2 mm wider
 than the Atom, because the board is 20.87 mm wide and 24 would leave 1.3 mm walls.
@@ -155,8 +155,10 @@ Measured on the built board (2026-11-21), all in `case.scad`:
   inside the wall clears the jack body.
 - Still assumed: columns centred across the board (equal side margins).
 
-Keyhole screw: the head ends up under the board, where the gap is 2.5 mm, so
-use a low-head screw (head 2 mm or less).
+Lid: snaps in with two flexible tabs (paddle wall at rows Q–U, key wall at rows
+J–M, clear of the jacks) that click into grooves in the walls. Lift it with a
+fingernail at the notch in the far end. Print the lid top face down, tabs up.
+No mounting hole: the keyer sits on the desk.
 
 ## Build order
 

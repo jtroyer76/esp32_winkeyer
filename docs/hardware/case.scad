@@ -1,6 +1,6 @@
 // Keyer case in the form of an M5 Atomic base (cf. ATOM PWM base, docs/reference/M5_Atom_PWM_base_drawing.pdf:
 // 24 wide, R3 corners, the Atom sits on a low step at one end and its top is flush with the tall end,
-// keyhole mount on the bottom). Ours is longer (about 60 mm) because the carrier board is 22 rows.
+// no mounting hole: it sits on the desk). Ours is longer (about 63 mm) because the carrier board is 22 rows.
 //
 // Orientation: USB-C to the RIGHT, viewed from above. KEY jack (to the radio) out the top/far wall,
 // PADDLE jack out the bottom/near wall, toward you.
@@ -8,12 +8,13 @@
 // Coordinates (seen from above, z up): y = 0 at the USB-C end, z = 0 at the bottom.
 // x = 0 is the PADDLE (column 1) wall, x = outer_w the KEY (column 7) wall. Check: with y = 0 at the bottom of
 // the screen the key wall is on the right; turn 90° counterclockwise so USB points right and the key wall is on top.
-// Two parts: the tray (print open side up) and the lid over the jack end (print flat).
+// Two parts: the tray (print open side up) and the lid over the jack end (print top face down, snap skirts up).
+// The lid snaps in with two tabs; lift it at the notch in the far end.
 // The carrier hangs from the Atom's headers and rests on a ledge under row V plus two posts.
 //
 // FIRST PRINT IS A TEST FIT. Check the values marked MEASURE against the built board.
 
-part = "both";          // "tray", "lid" or "both"
+part = "both";          // "tray", "lid", "both" or "assembled" (check only)
 
 // ---- Board (MEASURE) ----
 pitch        = 2.54;
@@ -49,15 +50,16 @@ jack_z_above_board = 6.5;     // measured 2026-11-21 directly (matches the datas
 paddle_row   = 11 + 2;        // N: paddle jack (rows L-P, middle), opens on the x = 0 wall (bottom, toward you)
 key_row      = 16 + 2;        // S: key jack (rows Q-U, far end), opens on the x = outer_w wall (top, USB right)
 
-// ---- Keyhole on the bottom, like the M5 base (3.2 mm slot, 6 mm head) ----
-keyhole      = true;
-keyhole_d    = 3.2;
-keyhole_head = 6;
-keyhole_len  = 5;
-
 // ---- Lid ----
 lid_t        = 1.6;
 lid_clr      = 0.25;
+// Snap tabs: a flexible skirt hangs from each long edge of the lid; a ridge on it clicks into a groove in the wall.
+// Placed diagonally, clear of the jacks: paddle wall at rows Q-U, key wall at rows J-M.
+snap_h       = 5;             // skirt height below the lid (long enough to flex without cracking PETG)
+snap_t       = 1.0;           // skirt thickness
+snap_gap     = 0.15;          // skirt to wall
+snap_bump    = 0.45;          // ridge height: 0.3 mm interference while pushing in
+snap_groove  = 0.5;           // groove depth in the wall
 
 // ---- Derived ----
 atom_y0      = end_wall + clr;                      // Atom's USB-end face
@@ -70,6 +72,10 @@ outer_h      = atom_bot_z + atom_h;                 // flush with the Atom top
 outer_l      = board_y0 + board_l + clr + far_wall;
 inner_w      = board_w + 2 * clr;
 pocket_end_y = atom_y0 + atom_l + 0.3;              // walls step down until here
+lid_z        = outer_h - lid_t;                     // underside of the lid
+snap_zb      = lid_z - snap_h + 1.2;                // ridge peak height
+snap_paddle  = [pocket_end_y + 19.5, pocket_end_y + 32.2];   // y range, paddle (x = 0) wall
+snap_key     = [pocket_end_y + 1, pocket_end_y + 12];        // y range, key (x = outer_w) wall
 jack_z       = board_top_z + jack_z_above_board;
 wall_t       = board_x0 - clr;
 function row_y(r) = atom_y0 + atom_pin1_y + r * pitch;   // rows located from the Atom's first header pin
@@ -89,6 +95,11 @@ module tray() {
             cube([inner_w, board_l + 2 * clr, outer_h]);
         // Atom step: full width from the USB end, down to the Atom's underside
         translate([-1, -1, atom_bot_z]) cube([outer_w + 2, pocket_end_y + 1, outer_h]);
+        // snap grooves (the key side is mirrored)
+        snap_groove_cut(snap_paddle);
+        translate([outer_w, 0, 0]) mirror([1, 0, 0]) snap_groove_cut(snap_key);
+        // pry notch in the far wall to lift the lid
+        translate([outer_w / 2 - 3, outer_l - far_wall - 0.5, lid_z - 0.8]) cube([6, far_wall + 1, lid_t + 1]);
         // lid rebate over the jack end
         translate([board_x0 - clr - 1, pocket_end_y - 0.01, outer_h - lid_t])
             cube([inner_w + 2, outer_l - far_wall + 1 - pocket_end_y, lid_t + 1]);
@@ -100,11 +111,6 @@ module tray() {
         translate([outer_w - wall_t - 1, row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
         translate([board_x0 + board_w - 0.2, row_y(key_row) - jack_body_w / 2, board_top_z - 0.5])
             cube([jack_proud + 0.5, jack_body_w, jack_z - board_top_z + jack_body_w / 2 + 0.5]);
-        // keyhole under rows G-H (no solder joints there); the screw head ends up inside, under the board
-        if (keyhole) translate([outer_w / 2, row_y(6), -0.01]) {
-            cylinder(d = keyhole_head, h = floor_t + 0.02);
-            translate([-keyhole_d / 2, 0, 0]) cube([keyhole_d, keyhole_len, floor_t + 0.02]);
-        }
     }
     // ledge under row V (no joints there) at the far end
     translate([board_x0, row_y(21) - 1, floor_t]) cube([board_w, 2, board_gap]);
@@ -113,13 +119,34 @@ module tray() {
         translate([col_x(7), row_y(r), floor_t]) cylinder(d = 2, h = board_gap);
 }
 
+// Skirt profile in the x-z plane for the x = 0 wall: the ridge points toward the wall.
+// Long slope underneath (lead-in as the lid goes down), steeper on top (holds).
+module snap_skirt(yr) {
+    x0 = wall_t + snap_gap;
+    translate([0, yr[1], 0]) rotate([90, 0, 0]) linear_extrude(height = yr[1] - yr[0])
+        polygon([[x0, lid_z + 0.01], [x0, snap_zb + 0.4], [x0 - snap_bump, snap_zb], [x0, snap_zb - 1.0],
+                 [x0, lid_z - snap_h], [x0 + snap_t, lid_z - snap_h], [x0 + snap_t, lid_z + 0.01]]);
+}
+module snap_groove_cut(yr) {
+    translate([wall_t - snap_groove, yr[0] - 0.4, snap_zb - 1.2]) cube([snap_groove + 0.01, yr[1] - yr[0] + 0.8, 1.8]);
+}
+
+// The lid in its installed position (tray coordinates).
+module lid_installed() {
+    translate([wall_t - 1 + lid_clr, pocket_end_y, lid_z])
+        cube([inner_w + 2 - 2 * lid_clr, outer_l - far_wall + 1 - pocket_end_y - lid_clr, lid_t]);
+    snap_skirt(snap_paddle);
+    translate([outer_w, 0, 0]) mirror([1, 0, 0]) snap_skirt(snap_key);
+}
+
+// For printing: flipped, top face on the bed, skirts pointing up.
 module lid() {
-    // drops into the rebate; its top ends flush with the Atom top
-    cube([inner_w + 2 - 2 * lid_clr, outer_l - far_wall + 1 - pocket_end_y - lid_clr, lid_t]);
+    translate([0, 0, outer_h]) mirror([0, 0, 1]) lid_installed();
 }
 
 if (part == "tray" || part == "both") tray();
 if (part == "lid"  || part == "both") translate([outer_w + 6, 0, 0]) lid();
+if (part == "assembled") { tray(); color("orange") lid_installed(); }
 
 echo(str("Wall at the jacks ", wall_t, " mm; Outside ", outer_w, " x ", outer_l, " x ", outer_h, " mm; step (Atom underside) at z = ", atom_bot_z,
          "; jack centres at z = ", jack_z, "; plug hole top at z = ", jack_z + jack_hole_d / 2, " (lid rebate at ", outer_h - lid_t, ")"));
