@@ -10,7 +10,8 @@
 // the screen the key wall is on the right; turn 90° counterclockwise so USB points right and the key wall is on top.
 // Two parts: the tray (print open side up) and the lid over the jack end (print top face down, snap skirts up).
 // The lid snaps in with two tabs; lift it at the notch in the far end.
-// The carrier hangs from the Atom's headers and rests on a ledge under row V plus two posts.
+// The board sits on rails under both long edges (outside the solder joints), and a ledge under row V.
+// The Atom step is 0.2 mm low so the board, not the Atom, sets the height.
 //
 // FIRST PRINT IS A TEST FIT. Check the values marked MEASURE against the built board.
 
@@ -23,6 +24,7 @@ board_l      = 56.84;         // measured
 board_t      = 1.17;          // measured
 col_margin   = (board_w - 7 * pitch) / 2;                // long edge to the edge of column 1's pitch cell (assumed equal;
                                                          // headers are in cols 1 and 7, centred on the Atom)
+rail_w       = 1.2;           // support rails under the board's long edges
 board_gap    = 2.5;           // under-board clearance; solder sticks out 1.5-2 mm (measured)
 
 // ---- Atom (MEASURE atom_standoff) ----
@@ -94,7 +96,7 @@ module tray() {
         translate([board_x0 - clr, board_y0 - clr, floor_t])
             cube([inner_w, board_l + 2 * clr, outer_h]);
         // Atom step: full width from the USB end, down to the Atom's underside
-        translate([-1, -1, atom_bot_z]) cube([outer_w + 2, pocket_end_y + 1, outer_h]);
+        translate([-1, -1, atom_bot_z - 0.2]) cube([outer_w + 2, pocket_end_y + 1, outer_h]);
         // snap grooves (the key side is mirrored)
         snap_groove_cut(snap_paddle);
         translate([outer_w, 0, 0]) mirror([1, 0, 0]) snap_groove_cut(snap_key);
@@ -113,11 +115,11 @@ module tray() {
         translate([board_x0 + board_w - 0.2, row_y(key_row) - jack_body_w / 2, board_top_z - 0.5])
             cube([jack_proud + 0.5, jack_body_w, outer_h]);   // slot to the top: the board drops straight in
     }
+    // rails under both long edges, full length: the nearest joints (cols 1 and 7) are 2.8 mm in from the edge
+    for (x = [board_x0, board_x0 + board_w - rail_w])
+        translate([x, board_y0, floor_t]) cube([rail_w, board_l, board_gap]);
     // ledge under row V (no joints there) at the far end
     translate([board_x0, row_y(21) - 1, floor_t]) cube([board_w, 2, board_gap]);
-    // posts under the jacks at column 7 (N7, S7 have no joints; key pin 1 is at S6)
-    for (r = [key_row, paddle_row])
-        translate([col_x(7), row_y(r), floor_t]) cylinder(d = 2, h = board_gap);
 }
 
 // Skirt profile in the x-z plane for the x = 0 wall: the ridge points toward the wall.

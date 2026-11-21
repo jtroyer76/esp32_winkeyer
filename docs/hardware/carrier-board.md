@@ -155,6 +155,9 @@ Measured on the built board (2026-11-21), all in `case.scad`:
   inside the wall, running up to the top, clears the jack body so the board
   lowers straight in. The jacks don't go through the wall; the plug reaches in.
 - Still assumed: columns centred across the board (equal side margins).
+- Support: 1.2 mm rails under both long edges (full length, 1.6 mm clear of
+  the col 1 and col 7 joints), and a ledge under row V.
+  Keep solder blobs in columns 1 and 7 from spreading toward the edges.
 
 Lid: snaps in with two flexible tabs (paddle wall at rows Q–U, key wall at rows
 J–M, clear of the jacks) that click into grooves in the walls. Lift it with a
