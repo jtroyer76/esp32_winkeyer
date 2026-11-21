@@ -68,7 +68,9 @@ afterwards: the two halves must read open.
 The first hole of each "or" assumes jack pin 2 is the tip; use the second if
 the meter says pin 5 is. The paddle joints in rows L–P stay out of column 1:
 the key wires (radio side) run up column 1 from Q and S to J and K, and must
-not lie on an Atom-side solder joint.
+not lie on an Atom-side solder joint. Likewise the paddle GND wire (N3 → A2) runs between
+columns 3 and 4, over the J4/K4 cuts, so it stays clear of the radio-side
+joints J1, J2, K1 and K2.
 
 Everything added goes on the **copper side**, so nothing has to fit under
 the Atom. Wires are enamelled magnet wire soldered straight onto the strip

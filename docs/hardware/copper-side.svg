@@ -259,9 +259,9 @@
 <path d="M90 424L103.0 424L103.0 112L90 112" stroke="#4f7f2a" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
 <circle cx="90" cy="424" r="3.5" fill="#4f7f2a"/><circle cx="90" cy="112" r="3.5" fill="#4f7f2a"/>
 <text x="107.0" y="264.0" font-size="9" fill="#4f7f2a" font-weight="600">dah</text>
-<path d="M116 372L77.0 372L77.0 34L90 34" stroke="#1f5fa8" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
+<path d="M116 372L129.0 372L129.0 34L90 34" stroke="#1f5fa8" stroke-width="2.5" fill="none" stroke-linejoin="round" opacity=".95"/>
 <circle cx="116" cy="372" r="3.5" fill="#1f5fa8"/><circle cx="90" cy="34" r="3.5" fill="#1f5fa8"/>
-<text x="81.0" y="199.0" font-size="9" fill="#1f5fa8" font-weight="600">pad GND</text>
+<text x="133.0" y="199.0" font-size="9" fill="#1f5fa8" font-weight="600">pad GND</text>
 <rect x="185.81102362204723" y="238.6220472440945" width="16.37795275590551" height="32.75590551181102" fill="#2b2b2b" stroke="#1d1b17" stroke-width="1" rx="1"/>
 <rect x="185.81102362204723" y="238.6220472440945" width="16.37795275590551" height="7" fill="#c8c8c8"/><rect x="185.81102362204723" y="264.37795275590554" width="16.37795275590551" height="7" fill="#c8c8c8"/>
 <text x="206.18897637795277" y="258.0" font-size="9" fill="#1d1b17" font-weight="600">470 Ω 1206</text>

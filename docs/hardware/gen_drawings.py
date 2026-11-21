@@ -30,7 +30,7 @@ WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run
     ("S1", "K1", "key sleeve", False, 0.35),
     ("L5", "A5", "dit", False, 5.5),
     ("P2", "D2", "dah", False, 2.5),     # col 2/3, not col 1: the key wires run up col 1 past these rows
-    ("N3", "A2", "pad GND", False, 1.5),
+    ("N3", "A2", "pad GND", False, 3.5),   # lane 3.5: clear of the radio-side joints J1 J2 K1 K2 (passes the J4/K4 cuts)
 ]
 SMT = [("I6", "J6", "470 Ω 1206")]       # copper side, straddling the gap between two adjacent strips
 WIRE_COLORS = ["#1f5fa8", "#2a9d8f", "#c77d1a", "#8e44ad", "#d1495b", "#4f7f2a", "#1f5fa8"]
