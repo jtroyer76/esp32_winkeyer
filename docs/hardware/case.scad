@@ -144,7 +144,8 @@ module lid_installed() {
 
 // For printing: flipped, top face on the bed, skirts pointing up.
 module lid() {
-    translate([0, 0, outer_h]) mirror([0, 0, 1]) lid_installed();
+    // a ROTATION (flip over), not a mirror: a mirror would put each tab on the wrong wall
+    translate([0, outer_l, outer_h]) rotate([180, 0, 0]) lid_installed();
 }
 
 if (part == "tray" || part == "both") tray();
