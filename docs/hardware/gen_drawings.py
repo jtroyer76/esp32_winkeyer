@@ -25,7 +25,7 @@ RADIO_ROWS_HALF = "JK"                  # left half (cols 1-3) is radio side
 RADIO_ROWS_FULL = "QRSTU"               # whole row is radio side (key jack)
 WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run is drawn along (x.5 = between)
     ("D6", "I7", "G5", False, 6.5),
-    ("K6", "A3", "GND", False, 4.5),
+    ("K6", "A3", "opto GND", False, 4.5),
     ("Q1", "J1", "key tip", False, 0.7),
     ("S1", "K1", "key sleeve", False, 0.35),
     ("L5", "A5", "dit", False, 5.5),
@@ -33,7 +33,7 @@ WIRES = [  # (from, to, label, is_resistor, lane) lane = column the vertical run
     ("N3", "A2", "pad GND", False, 3.5),   # lane 3.5: clear of the radio-side joints J1 J2 K1 K2 (passes the J4/K4 cuts)
 ]
 SMT = [("I6", "J6", "470 Ω 1206")]       # copper side, straddling the gap between two adjacent strips
-WIRE_COLORS = ["#1f5fa8", "#2a9d8f", "#c77d1a", "#8e44ad", "#d1495b", "#4f7f2a", "#1f5fa8"]
+WIRE_COLORS = ["#1f5fa8", "#2a9d8f", "#c77d1a", "#8e44ad", "#d1495b", "#4f7f2a", "#4a4a4a"]  # each wire its own colour
 
 # fixed colours (SVG files have no theme)
 BG, FG, MUTED, PAD = "#ffffff", "#1d1b17", "#6b665c", "#ffffff"
