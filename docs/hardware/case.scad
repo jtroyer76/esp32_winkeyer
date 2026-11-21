@@ -58,9 +58,9 @@ lid_clr      = 0.25;
 // Snap tabs: a flexible skirt hangs from each long edge of the lid; a ridge on it clicks into a groove in the wall.
 // Placed diagonally, clear of the jacks: paddle wall at rows Q-U, key wall at rows J-M.
 snap_h       = 5;             // skirt height below the lid (long enough to flex without cracking PETG)
-snap_t       = 1.0;           // skirt thickness
+snap_t       = 0.85;          // skirt thickness (v2: thinner so the bigger ridge still flexes in, ~3.5% strain)
 snap_gap     = 0.15;          // skirt to wall
-snap_bump    = 0.45;          // ridge height: 0.3 mm interference while pushing in
+snap_bump    = 0.55;          // ridge height (v2, was 0.45): 0.4 mm into the 0.5 mm groove
 snap_groove  = 0.5;           // groove depth in the wall
 
 // ---- Derived ----
@@ -123,11 +123,11 @@ module tray() {
 }
 
 // Skirt profile in the x-z plane for the x = 0 wall: the ridge points toward the wall.
-// Long slope underneath (lead-in as the lid goes down), steeper on top (holds).
+// Long slope underneath (lead-in as the lid goes down), steep catch on top (v2: ~75 deg, was ~45) so it holds.
 module snap_skirt(yr) {
     x0 = wall_t + snap_gap;
     translate([0, yr[1], 0]) rotate([90, 0, 0]) linear_extrude(height = yr[1] - yr[0])
-        polygon([[x0, lid_z + 0.01], [x0, snap_zb + 0.4], [x0 - snap_bump, snap_zb], [x0, snap_zb - 1.0],
+        polygon([[x0, lid_z + 0.01], [x0, snap_zb + 0.15], [x0 - snap_bump, snap_zb], [x0, snap_zb - 1.0],
                  [x0, lid_z - snap_h], [x0 + snap_t, lid_z - snap_h], [x0 + snap_t, lid_z + 0.01]]);
 }
 module snap_groove_cut(yr) {
