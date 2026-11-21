@@ -103,14 +103,15 @@ module tray() {
         // lid rebate over the jack end
         translate([board_x0 - clr - 1, pocket_end_y - 0.01, outer_h - lid_t])
             cube([inner_w + 2, outer_l - far_wall + 1 - pocket_end_y, lid_t + 1]);
-        // PADDLE jack: x = 0 wall, row N. Plug hole straight through, plus a relief for the jack body sticking past the board edge.
+        // PADDLE jack: x = 0 wall, row N. Plug hole straight through, plus a slot for the jack body (0.5 mm past the board edge)
+        // running up to the top, so the board lowers straight in with the jacks sliding down the slots.
         translate([-1, row_y(paddle_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
         translate([board_x0 - jack_proud - 0.3, row_y(paddle_row) - jack_body_w / 2, board_top_z - 0.5])
-            cube([jack_proud + 0.5, jack_body_w, jack_z - board_top_z + jack_body_w / 2 + 0.5]);
+            cube([jack_proud + 0.5, jack_body_w, outer_h]);   // slot to the top: the board drops straight in
         // KEY jack: x = outer_w wall, row S
         translate([outer_w - wall_t - 1, row_y(key_row), jack_z]) rotate([0, 90, 0]) cylinder(d = jack_hole_d, h = wall_t + 2);
         translate([board_x0 + board_w - 0.2, row_y(key_row) - jack_body_w / 2, board_top_z - 0.5])
-            cube([jack_proud + 0.5, jack_body_w, jack_z - board_top_z + jack_body_w / 2 + 0.5]);
+            cube([jack_proud + 0.5, jack_body_w, outer_h]);   // slot to the top: the board drops straight in
     }
     // ledge under row V (no joints there) at the far end
     translate([board_x0, row_y(21) - 1, floor_t]) cube([board_w, 2, board_gap]);

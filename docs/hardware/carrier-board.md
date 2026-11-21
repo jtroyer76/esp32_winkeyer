@@ -151,8 +151,9 @@ Measured on the built board (2026-11-21), all in `case.scad`:
 - Board bottom to Atom bottom 3.68 mm (so 2.51 mm board top to Atom).
 - Jack centres 6.5 mm above the board top. The jack fronts stick 0.5 mm past
   the board's long edge, so each plug hole (7.4 mm) goes straight through the
-  wall and the plug (6.75 mm body) seats against the jack. A 0.8 mm recess
-  inside the wall clears the jack body.
+  wall and the plug (6.75 mm body) seats against the jack. A 0.8 mm slot
+  inside the wall, running up to the top, clears the jack body so the board
+  lowers straight in. The jacks don't go through the wall; the plug reaches in.
 - Still assumed: columns centred across the board (equal side margins).
 
 Lid: snaps in with two flexible tabs (paddle wall at rows Q–U, key wall at rows
