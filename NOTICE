@@ -1,0 +1,8 @@
+Third-party material not covered by the above:
+
+docs/reference/WK3_Datasheet_v1.3.pdf is the K1EL WinKeyer3 IC datasheet,
+copyright K1EL Systems, redistributed under its own Creative Commons
+BY-NC-SA terms (see page 39 of the datasheet). The WinKeyer protocol it
+describes is licensed by K1EL for personal, non-commercial use; a
+commercial product built from this firmware would need K1EL's permission
+for the protocol regardless of the MIT grant on the code.
