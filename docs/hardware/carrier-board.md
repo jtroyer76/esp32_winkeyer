@@ -1,7 +1,7 @@
 # Carrier board (stripboard)
 
 AtomS3 Lite on 7 × 22 stripboard with one PC817 and two 3.5 mm jacks, in the
-form of an M5 "Atomic base": 24 mm wide, the Atom flush in the top at one end
+form of an M5 "Atomic base" (26 mm wide, 2 mm wider than the Atom), the Atom flush in the top at one end
 with its USB-C facing out, key jack out one long side, paddle jack out the
 other. Held with the USB-C to the right, the **key** jack (to the radio) is on
 the far side at the end away from the Atom, and the **paddle** jack is on the
@@ -125,18 +125,14 @@ board (datasheet front view; check with calipers) on the jack's centre row
 ![case plan](case-plan.svg)
 
 Same form as M5's Atomic bases (ATOM PWM base: 24 × 48 × 17.5 mm, drawing in
-[`../reference/M5_Atom_PWM_base_drawing.pdf`](../reference/M5_Atom_PWM_base_drawing.pdf)).
+[`../reference/M5_Atom_PWM_base_drawing.pdf`](../reference/M5_Atom_PWM_base_drawing.pdf)),
+but 26 mm wide and about 63 mm long to fit the 22-row board. The plan drawing
+above is from before the board was measured; the measured numbers are below
+and in `case.scad`.
 
-- Board 17.8 × 56 mm (7 × 22 holes). Atom body over rows A–I, flush in a
-  24 × 24 opening in the top; USB-C out that end of the case.
-- Jacks 10 mm tall on the component side, openings in the long walls at
-  rows N (paddle, col-1 side) and S (key, col-7 side).
-- Inside about 19 × 58 × 13 mm; outside with 2 mm walls about 24 × 62 × 17.
-- Leave ~3 mm under the board for solder joints. A rib inside each long wall
-  under the jack body takes the push-in force; the pins take pull-out.
-- Atom body 24 × 24 × 10 mm per M5. The AtomS3 Lite STL (M5_Hardware,
-  C124_AtomS3-Lite) gives the exact outline and header offset for the
-  opening.
+**Status (2026-11-22): built and working.** Paddles, break-in and the key output
+tested with N1MM (it only sends to the WinKeyer when the radio mode is CW).
+The lid v2 snap is good enough to hold; the final assembly is hot-glued.
 
 ### Printed case
 
