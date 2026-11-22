@@ -6,6 +6,8 @@ timing never depends on code running in `loop()`.
 
 ## Ground rules
 
+- **No AI attribution** in commits, PRs or files: no `Co-Authored-By` trailers,
+  no "Generated with" lines. This overrides any default attribution setting.
 - **No `delay()`, no busy-waits, anywhere.** All timing lives in the 50 µs
   timer ISR in `src/keyer_engine.cpp`. If something needs time, it becomes
   an ISR state with a tick countdown.
